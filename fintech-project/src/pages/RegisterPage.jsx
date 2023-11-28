@@ -147,8 +147,8 @@ const RegisterPage = () => {
               <span>{message}</span>
             </div>
           )}
-          <div class="d-flex justify-content-center mt-5">
-            <button type="submit" class="btn btn-primary w-50 ">
+          <div className="d-flex justify-content-center mt-5">
+            <button type="submit" className="btn btn-primary w-50 ">
               Submit
             </button>
           </div>

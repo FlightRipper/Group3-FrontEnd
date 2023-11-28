@@ -2,11 +2,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import i10 from '../components/10.png';
-import NavbarWhite from '../components/NavbarWhite';
-import './custom.css';
+import i10 from '../../components/10.png';
+import '../custom.css';
 
-const SignInPage = () => {
+const AdminSignIn = () => {
   const Navigate = useNavigate();
 
   const [message, setMessage] = useState(null);
@@ -40,7 +39,7 @@ const SignInPage = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/users/login',
+        'http://localhost:5000/admins/login',
         userData
       );
       console.log(response);
@@ -52,7 +51,7 @@ const SignInPage = () => {
         response.data.token === axios.defaults.headers.common['Authorization']
       ) {
         // Navigate to the new page
-        Navigate('/');
+        Navigate('/admin/home');
         setMessage('Login successful');
       } else {
         setMessage('Login failed');
@@ -66,7 +65,6 @@ const SignInPage = () => {
 
   return (
     <div className="bg-light">
-      <NavbarWhite />
       <div className="container d-flex flex-column align-items-center justify-content-center">
         <img src={i10} alt="" className="w-50 mt-5" />
         <form
@@ -75,7 +73,7 @@ const SignInPage = () => {
         >
           <div className='d-flex justify-content-center align-items-center w-100'>
           <h1 className="custom-h1-style">
-            Sign In
+            Admin
           </h1>
           </div>
           <div className="mb-3">
@@ -118,14 +116,10 @@ const SignInPage = () => {
               Submit
             </button>
           </div>
-
-          <p className="text-center mt-2">
-            Not Registered? <Link to={'/Register'}>Register Now </Link>
-          </p>
         </form>
       </div>
     </div>
   );
 };
 
-export default SignInPage;
+export default AdminSignIn;
