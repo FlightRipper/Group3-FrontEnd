@@ -90,7 +90,7 @@ const RegisterPage = () => {
           </h1>
           </div>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label mt-3">
+            <label htmlFor="username" className="form-label mt-3 custom-label-headers-for-inputs">
               Username
             </label>
             <input
@@ -98,10 +98,12 @@ const RegisterPage = () => {
               className="form-control"
               id="usernameInput"
               required
+              placeholder='Please enter a username'
+
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">
+            <label htmlFor="email" className="form-label custom-label-headers-for-inputs" >
               email
             </label>
             <input
@@ -109,10 +111,11 @@ const RegisterPage = () => {
               className="form-control"
               id="emailInput"
               required
+              placeholder='Please enter your email'
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label font">
+            <label htmlFor="password" className="form-label custom-label-headers-for-inputs">
               Password
             </label>
             <input
@@ -120,16 +123,17 @@ const RegisterPage = () => {
               className="form-control"
               id="passwordInput"
               required
+              placeholder='Please enter your password'
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="userType" className="form-label">
+            <label htmlFor="userType" className="form-label custom-label-headers-for-inputs">
               User Type
             </label>
-            <select id="userType" className="form-select" required>
-              <option selected>What you Want to Be ?</option>
-              <option value="projectOwner">A Project Owner</option>
-              <option value="donor">A Donor</option>
+            <select id="userType" className="form-select custom-form-select-register" required>
+              <option selected>What are you aiming to?</option>
+              <option value="projectOwner">A Project Owner (Can create campaings to gather donations)</option>
+              <option value="donor">A Donor (Can Explore campaings and donate securely)</option>
             </select>
           </div>
           {message && (
@@ -144,7 +148,7 @@ const RegisterPage = () => {
             </div>
           )}
           <div class="d-flex justify-content-center mt-5">
-            <button type="submit" class="btn btn-primary w-50">
+            <button type="submit" class="btn btn-primary w-50 ">
               Submit
             </button>
           </div>

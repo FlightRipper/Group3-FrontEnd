@@ -79,7 +79,7 @@ const SignInPage = () => {
           </h1>
           </div>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label mt-3">
+            <label htmlFor="username" className="form-label mt-3 custom-label-headers-for-inputs">
               Username
             </label>
             <input
@@ -87,10 +87,11 @@ const SignInPage = () => {
               className="form-control"
               id="usernameInput"
               required
+              placeholder='please enter you username'
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
+            <label htmlFor="password" className="form-label custom-label-headers-for-inputs">
               Password
             </label>
             <input
@@ -98,6 +99,7 @@ const SignInPage = () => {
               className="form-control"
               id="passwordInput"
               required
+              placeholder='please enter your password'
             />
           </div>
           {message && (

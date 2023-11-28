@@ -20,7 +20,7 @@
 .btn-primary {
   background-color: var(--bs-color) !important;
   border: none !important;
-  font-family: "Asap" !important;
+  font-family: "Signika" !important;
 }
 .btn-primary:hover {
   background-color: var(--bs-hover-color) !important;
@@ -45,5 +45,16 @@
   color: white;
   top: 30% !important;
   left: 10% !important;
+ }
+ .custom-label-headers-for-inputs{
+  font-family: "Asap";
+  color: #838694;
+ }
 
+ .form-control::placeholder{
+  color: #838694 !important;
+  opacity: 0.3 !important;
+ }
+ .custom-form-select-register{
+  color: var(--bs-hover-color) !important;
  }
