@@ -1,0 +1,49 @@
+:root {
+  --bs-light-rgb: 243, 243, 243;
+  --bs-bg-opacity: 1;
+  --bs-color:#38bfc5;
+  --bs-hover-color:#1d8d92;
+
+ }
+.custom-image-class {
+  min-width: 25vh;
+  max-width: 25vh;
+}
+.navbar-toggler {
+  border: none !important;
+  border-radius: none !important;
+  color: transparent !important;
+}
+.nav-link {
+  color: var(--bs-color) !important;
+}
+.btn-primary {
+  background-color: var(--bs-color) !important;
+  border: none !important;
+  font-family: "Asap" !important;
+}
+.btn-primary:hover {
+  background-color: var(--bs-hover-color) !important;
+}
+.dropdown-item {
+  color: var(--bs-color) !important;
+}
+.form-control{
+  border-radius: 1px solid #38bfc5 !important;
+}
+.custom-h1-style{
+  font-family: "Signika" !important;
+  font-weight: bold !important;
+  font-size: 3rem !important;
+  color: #134f50 !important;
+}
+ body {
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+ }
+ .custom-div-homepage{
+  position: absolute !important;
+  color: white;
+  top: 30% !important;
+  left: 10% !important;
+
+ }

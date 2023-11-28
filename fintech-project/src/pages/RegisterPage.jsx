@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import i10 from '../components/10.png';
+import NavbarWhite from '../components/NavbarWhite';
+import './custom.css';
 
 const RegisterPage = () => {
   const Navigate = useNavigate();
@@ -74,72 +76,80 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="container d-flex flex-column align-items-center justify-content-center">
-      <img src={i10} alt="" className="w-50 mt-5" />
-      <form
-        className="p-5 bg-light rounded shadow-lg needs-validation w-75 h-50 m-auto mt-5"
-        onSubmit={handleSubmit}
-      >
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="usernameInput"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            email
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="emailInput"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="passwordInput"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="userType" className="form-label">
-            User Type
-          </label>
-          <select id="userType" className="form-select" required>
-            <option selected>What you Want to Be ?</option>
-            <option value="projectOwner">A Project Owner</option>
-            <option value="donor">A Donor</option>
-          </select>
-        </div>
-        {message && (
-          <div
-            className={
-              message.includes('success')
-                ? 'form-group text-success'
-                : 'form-group text-danger'
-            }
-          >
-            <span>{message}</span>
+    <div className="bg-light">
+      <NavbarWhite />
+      <div className="container d-flex flex-column align-items-center justify-content-center">
+        <img src={i10} alt="" className="w-50 mt-5" />
+        <form
+          className="p-5 bg-light rounded shadow-lg needs-validation w-75 h-50 bg-white rounded mt-2 mb-5"
+          onSubmit={handleSubmit}
+        >
+          <div className='d-flex justify-content-center align-items-center'>
+          <h1 className="custom-h1-style">
+            Register
+          </h1>
           </div>
-        )}
-        <div class="d-flex justify-content-center mt-5">
-          <button type="submit" class="btn btn-primary w-50">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label mt-3">
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="usernameInput"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              email
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="emailInput"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label font">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="passwordInput"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="userType" className="form-label">
+              User Type
+            </label>
+            <select id="userType" className="form-select" required>
+              <option selected>What you Want to Be ?</option>
+              <option value="projectOwner">A Project Owner</option>
+              <option value="donor">A Donor</option>
+            </select>
+          </div>
+          {message && (
+            <div
+              className={
+                message.includes('success')
+                  ? 'form-group text-success'
+                  : 'form-group text-danger'
+              }
+            >
+              <span>{message}</span>
+            </div>
+          )}
+          <div class="d-flex justify-content-center mt-5">
+            <button type="submit" class="btn btn-primary w-50">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

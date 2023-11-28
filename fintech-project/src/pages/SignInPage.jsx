@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import i10 from '../components/10.png';
+import NavbarWhite from '../components/NavbarWhite';
+import './custom.css';
+
 const SignInPage = () => {
   const Navigate = useNavigate();
 
@@ -62,55 +65,63 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="container d-flex flex-column align-items-center justify-content-center">
-      <img src={i10} alt="" className="w-50 mt-5" />
-      <form
-        className="p-5 bg-light rounded shadow-lg needs-validation w-75 h-50 mt-5 m-auto"
-        onSubmit={handleSubmit}
-      >
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="usernameInput"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="passwordInput"
-            required
-          />
-        </div>
-        {message && (
-          <div
-            className={
-              message.includes('success')
-                ? 'form-group text-success'
-                : 'form-group text-danger'
-            }
-          >
-            <span>{message}</span>
+    <div className="bg-light">
+      <NavbarWhite />
+      <div className="container d-flex flex-column align-items-center justify-content-center">
+        <img src={i10} alt="" className="w-50 mt-5" />
+        <form
+          className="p-5 bg-light rounded shadow-lg needs-validation w-75 h-50 form-custom-style bg-white mt-2 mb-5"
+          onSubmit={handleSubmit}
+        >
+          <div className='d-flex justify-content-center align-items-center w-100'>
+          <h1 className="custom-h1-style">
+            Sign In
+          </h1>
           </div>
-        )}
-        <div class="d-flex justify-content-center">
-          <button type="submit" class="btn btn-primary w-50 m-5">
-            Submit
-          </button>
-        </div>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label mt-3">
+              Username
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="usernameInput"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="passwordInput"
+              required
+            />
+          </div>
+          {message && (
+            <div
+              className={
+                message.includes('success')
+                  ? 'form-group text-success'
+                  : 'form-group text-danger'
+              }
+            >
+              <span>{message}</span>
+            </div>
+          )}
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-50 m-5">
+              Submit
+            </button>
+          </div>
 
-        <p className="text-center mt-5">
-          Not registered? <Link to={'/Register'}>register Now </Link>
-        </p>
-      </form>
+          <p className="text-center mt-2">
+            Not Registered? <Link to={'/Register'}>Register Now </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
