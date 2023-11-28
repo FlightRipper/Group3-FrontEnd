@@ -6,7 +6,7 @@ import '../pages/custom.css';
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg fixed-top shadow-lg px-5 py-4 justify-content-end">
+      <nav className="navbar navbar-expand-lg fixed-top px-5 py-4 justify-content-end">
         <div className="container-fluid d-flex justify-content-between">
           <div className="d-flex">
             <Link to={'/'}>

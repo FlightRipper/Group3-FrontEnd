@@ -1,5 +1,5 @@
 import React from 'react'
-import i20 from './21.png'
+import i20 from './25.png'
 import Navbar from '../components/Navbar'
 
 
