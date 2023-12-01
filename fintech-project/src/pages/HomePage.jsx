@@ -38,7 +38,7 @@ const home = () => {
           </div>
         </div>
         <button
-          className="carousel-control-prev"
+          className="carousel-control-prev d-none"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="prev"
@@ -50,7 +50,7 @@ const home = () => {
           <span className="visually-hidden">Previous</span>
         </button>
         <button
-          className="carousel-control-next"
+          className="carousel-control-next d-none"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="next"
@@ -62,7 +62,7 @@ const home = () => {
           <span className="visually-hidden">Next</span>
         </button>
         <div className="custom-div-homepage">
-          <h1>
+          <h1 className=''>
             <strong>We Rise</strong>
           </h1>
           <h3>Raise and donate funds for what you care about</h3>

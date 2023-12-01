@@ -16,6 +16,7 @@
 }
 .nav-link {
   color: var(--bs-color) !important;
+  font-weight: bold !important;
 }
 .btn-primary {
   background-color: var(--bs-color) !important;
