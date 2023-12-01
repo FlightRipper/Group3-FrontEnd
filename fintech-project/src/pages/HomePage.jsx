@@ -38,7 +38,7 @@ const home = () => {
           </div>
         </div>
         <button
-          className="carousel-control-prev d-none"
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="prev"
@@ -50,7 +50,7 @@ const home = () => {
           <span className="visually-hidden">Previous</span>
         </button>
         <button
-          className="carousel-control-next d-none"
+          className="carousel-control-next"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="next"

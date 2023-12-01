@@ -24,7 +24,7 @@ const RegisterPage = () => {
       <div className="container d-flex flex-column align-items-center justify-content-center">
         <img src={i10} alt="" className="w-50 mt-5" />
         <form
-          className="p-5 bg-light rounded shadow-lg needs-validation w-lg-75 h-50 bg-white rounded mt-2 mb-3"
+          className="p-5 bg-light rounded shadow-lg needs-validation w-75 h-50 bg-white rounded mt-2 mb-3"
           onSubmit={handleSubmit}
         >
           <div className="d-flex justify-content-center align-items-center">
