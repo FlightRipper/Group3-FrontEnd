@@ -5,6 +5,7 @@ import RegisterPage from './pages/RegisterPage'
 import HomePage from './pages/HomePage'
 import Navbar from './components/Navbar'
 import { useState } from 'react';
+import HowItWorks from './pages/HowItWorksPage/HowItWorks';
 // import io from 'socket.io-client';
 
 // const socket = io.connect('http://localhost:5000/');
@@ -29,6 +30,7 @@ function App() {
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<HomePage />}></Route>
         </Route>
+        <Route path='/HowItWorks' element ={<HowItWorks/>}></Route>
       </Routes>
     </BrowserRouter>
   );
