@@ -13,20 +13,16 @@ import DonationPage from './pages/DonationPage';
 // const socket = io.connect('http://localhost:5000/');
 
 function App() {
-  
-  
-  const { user } = useAuthContext();
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/howitworks" element={<HowItWorksPage />}></Route>
-        <Route path="/admin" element={<AdminSignIn />}></Route>
-        <Route path="/admin/home" element={{user} ? <AdminHome /> : <Navigate to={'/'} />}></Route>
-        <Route path="/Register" element={!user ? <RegisterPage /> : <Navigate to='/' />}></Route>
-        <Route path="/SignIn" element={!user ? <SigninPage /> : <Navigate to='/' />}></Route>
-        <Route path="/" element={{user} ? <HomePage /> : <Navigate to='/signin' /> }></Route>
-      <Route path="/Donation" element={{user} ? <DonationPage /> : <Navigate to='/' /> }></Route>
+        <Route path="/howitworks" element={<HowItWorksPage />} />
+        <Route path="/admin" element={<AdminSignIn />} />
+        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/Register" element={<RegisterPage />} />
+        <Route path="/SignIn" element={<SigninPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Donation" element={<DonationPage />} />
       </Routes>
     </BrowserRouter>
   );
