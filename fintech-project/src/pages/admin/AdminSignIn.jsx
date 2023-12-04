@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import i10 from '../../components/10.png';
-import '../custom.css';
+import '../custom.scss';
 import { useSignInAdmin } from '../../hooks/useSignInAdmin';
 
 const AdminSignIn = () => {

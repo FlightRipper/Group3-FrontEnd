@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import i10 from '../components/10.png';
 import NavbarWhite from '../components/NavbarWhite';
-import './custom.css';
+import './custom.scss';
 import { useRegister } from '../hooks/useRegister';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [userType, setUserType] = useState('');
+  const navigate = useNavigate()
 
   const { register, error, loading } = useRegister();
 
@@ -17,7 +19,10 @@ const RegisterPage = () => {
 
     // Get the input values from the register hook
     await register(username, email, password, userType);
+
+
   };
+  
   return (
     <div className="bg-light">
       <NavbarWhite />

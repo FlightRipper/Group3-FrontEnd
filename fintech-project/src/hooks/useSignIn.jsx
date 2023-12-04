@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useAuthContext } from './useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export const useSignIn = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate()
 
   const signIn = async (username, password) => {
     setLoading(true);
@@ -33,6 +35,8 @@ export const useSignIn = () => {
         setLoading(false)
 
         setError('Authentication successful');
+
+        navigate('/')
 
     }
   };

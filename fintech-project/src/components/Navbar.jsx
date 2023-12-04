@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import i10 from './10.png';
-import '../pages/custom.css';
+import '../pages/custom.scss';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogOut } from '../hooks/useLogOut';
 
 const Navbar = () => {
+  const { logout } = useLogOut();
+  const { user } = useAuthContext();
+
+  const handleClick = () => {
+    logout();
+  };
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg fixed-top px-5 py-4 justify-content-end">
+      <nav className="navbar navbar-expand-lg bg-transparent fixed-top px-5 py-4 justify-content-end bg-white">
         <div className="container-fluid d-flex justify-content-between">
           <div className="d-flex">
+          <img src={i10} alt="" className="w-25 h-25" />
             <Link to={'/'}>
-              <div className="row">
-                <img
-                  src={i10}
-                  alt=""
-                  className="d-block w-25 h-25 custom-image-class"
-                />
-              </div>
+              <div className="row"></div>
             </Link>
             <button
               className="navbar-toggler"
@@ -40,11 +44,13 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to={'/signin'}>
-                  Sign In
-                </Link>
-              </li>
+              {!user && (
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/signin'}>
+                    Sign In
+                  </Link>
+                </li>
+              )}
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -55,7 +61,7 @@ const Navbar = () => {
                 >
                   Raise For
                 </Link>
-                <ul className="dropdown-menu bg-dark">
+                <ul className="dropdown-menu bg-body">
                   <li>
                     <Link className="dropdown-item" to={''}>
                       Animals
@@ -78,6 +84,18 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
+              {user && (
+                <li className="nav-item d-flex justify-content-between align-items-baseline gap-5">
+                  <Link
+                    className="nav-link"
+                    onClick={handleClick}
+                    to={'/signin'}
+                  >
+                    Log Out
+                  </Link>
+                  <span className="text-white">{user.username}</span>
+                </li>
+              )}
             </ul>
           </div>
         </div>
