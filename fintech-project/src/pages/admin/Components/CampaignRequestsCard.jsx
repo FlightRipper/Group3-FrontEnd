@@ -17,7 +17,6 @@ const CampaignRequestsCard = () => {
                 <button type="button" className="btn btn-primary approve-button px-5">Approve</button>
                 <button type="button" className="btn btn-primary reject-button px-5">Reject</button>
                 </div>
-                
             </div>
   )
 }

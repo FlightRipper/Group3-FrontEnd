@@ -2,11 +2,9 @@ import React from "react";
 import "./AdminDashboard.css";
 import logo from "./10.png";
 import background from "./dashboardBackground.png";
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import CampaignPage from "./Components/CampaignPage.jsx";
-import Dropdown from "react-bootstrap/Dropdown";
-import { Link } from 'react-router-dom';
-
+import "bootstrap-icons/font/bootstrap-icons.css";
+import CampaignRequests from "./Components/CampaignRequests.jsx";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   return (
@@ -31,49 +29,34 @@ const AdminDashboard = () => {
               <h4 className="mt-3 mx-3">Users</h4>
             </div>
 
-
-
-
-
             <div className="users-tab d-flex flex-row p-2 align-items-center justify-content-center w-100">
               <i class="users-icon bi bi-people"></i>
 
-
-
-
               <Link
-                  className="nav-link dropdown-toggle d-flex flex-row align-items-center justify-content-center m-0"
-                  to={''}
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <h4 className="mt-3 mx-3">Campaigns</h4>
-                </Link>
+                className="nav-link dropdown-toggle d-flex flex-row align-items-center justify-content-center m-0"
+                to={""}
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <h4 className="mt-3 mx-3">Campaigns</h4>
+              </Link>
               <ul className="dropdown-menu bg-dark ">
-                  <li>
-                    <Link className="dropdown-item" to={''}>
+                <li>
+                  <Link className="dropdown-item" to={""}>
                     <h5 className="mt-3 mx-3 text-white">Requests</h5>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to={''}>
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to={""}>
                     <h5 className="mt-3 mx-3 text-white">Ongoing</h5>
-                    </Link>
-                  </li>
-                </ul>
-             
-
-
-
-
-
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
-          
-            <CampaignPage/>
-            
-        
+
+          <CampaignRequests />
         </div>
       </div>
     </div>
