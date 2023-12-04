@@ -8,7 +8,7 @@ const CampaignRequests = () => {
   return (
     <div className="w-100">
       <div className="dashboard-body w-100 h-100 d-flex row m-0 align-items-center justify-content-center">
-        <div className="body-header w-100 d-flex align-items-center  justify-content-between column p-3 m-0">
+        <div className="body-header w-100 d-flex align-items-center  justify-content-between column p-3 m-0 sticky-top">
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Filter By
@@ -25,10 +25,15 @@ const CampaignRequests = () => {
             <input type="text" className="admin-search px-3" placeholder="Search" />
           </div>
         </div>
-        <div className="body-content w-100 p-0 d-flex row justify-content-around align-items-center">
+        <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
             <CampaignRequestsCard/>
             <CampaignRequestsCard/>
             <CampaignRequestsCard/>
+            <CampaignRequestsCard/>
+            <CampaignRequestsCard/>
+
+
+            
         </div>
       </div>
     </div>
