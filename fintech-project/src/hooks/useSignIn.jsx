@@ -25,6 +25,7 @@ export const useSignIn = () => {
         setError('Incorrect credentials (Check your username and password)');
     }
     if(response.ok){
+        setLoading(false)
 
         //save the user to the local storage
         localStorage.setItem('user', JSON.stringify(json))
@@ -32,12 +33,11 @@ export const useSignIn = () => {
         //update the context
         dispatch({type: 'LOGIN',payload: json})
 
-        setLoading(false)
-
+        
         setError('Authentication successful');
-
+        
         navigate('/')
-
+        
     }
   };
   return {signIn, loading, error}
