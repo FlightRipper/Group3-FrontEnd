@@ -71,7 +71,7 @@ const AdminDashboard = () => {
             </div>
           </div>
           
-            <CampaignRequests/>
+            <CampaignPage/>
             
         
         </div>
