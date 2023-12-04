@@ -62,7 +62,7 @@ const Navbar = () => {
                 >
                   Raise For
                 </Link>
-                <ul className="dropdown-menu bg-body">
+                <ul className="dropdown-menu bg-dark">
                   <li>
                     <Link className="dropdown-item" to={''}>
                       Animals
@@ -86,15 +86,15 @@ const Navbar = () => {
                 </ul>
               </li>
               {user && (
-                <li className="nav-item d-flex justify-content-between align-items-baseline gap-5">
+                <li className="nav-item d-flex justify-content-between align-items-baseline gap-3">
                   <Link
                     className="nav-link"
                     onClick={handleClick}
                     to={'/signin'}
                   >
-                    Log Out
+                    Log out
                   </Link>
-                  <i class="bi bi-person text-white h4"></i>
+                  <i className="bi bi-person text-white h4"></i>
                 </li>
               )}
             </ul>

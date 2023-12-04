@@ -10,9 +10,9 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import DonationPage from './pages/DonationPage';
 import { useState, useEffect } from 'react';
 import SpinnerLoading from './components/SpinnerLoading.jsx';
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 
-// const socket = io.connect('http://localhost:5000/');
+const socket = io('http://localhost:5000');
 
 function App() {
   const { user } = useAuthContext();
