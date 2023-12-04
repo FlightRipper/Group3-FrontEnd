@@ -55,6 +55,7 @@
 }
 .body-header{
     height: 90px;
+    background-color: #1E1E1E;
 }
 #dropdown-basic {
     background-color: transparent !important; /* Replace with your custom color */
@@ -72,6 +73,8 @@
 .campaign-request-card{
     border: 1px solid #38bfc5 !important;
     position:  relative !important;
+    height: 85% !important;
+    width: 30% !important;
 
 }
 
@@ -92,4 +95,28 @@
 }
 .campaign-title{
     color: white !important;
+
+}
+
+.campaign-description{
+  font-size: smaller;
+  color: gray;
+}
+.campaign-target{
+  color: lightgray;
+}
+.campaign-owner{
+font-size: smaller;
+color: lightgray;
+}
+.approve-button{
+  
+background-color: green !important;
+
+}
+.reject-button{
+  background-color: red !important;
+}
+.dashboard-body{
+  overflow: scroll;
 }
