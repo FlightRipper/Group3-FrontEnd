@@ -5,6 +5,7 @@ import '../pages/custom.scss';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogOut } from '../hooks/useLogOut';
 
+
 const Navbar = () => {
   const { logout } = useLogOut();
   const { user } = useAuthContext();
@@ -93,7 +94,7 @@ const Navbar = () => {
                   >
                     Log Out
                   </Link>
-                  <span className="text-white">{user.username}</span>
+                  <i class="bi bi-person text-white h4"></i>
                 </li>
               )}
             </ul>
