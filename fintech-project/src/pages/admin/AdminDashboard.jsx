@@ -3,7 +3,7 @@ import "./AdminDashboard.css";
 import logo from "./10.png";
 import background from "./dashboardBackground.png";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import CampaignRequests from "./Components/CampaignRequests.jsx";
+import CampaignPage from "./Components/CampaignPage.jsx";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from 'react-router-dom';
 
