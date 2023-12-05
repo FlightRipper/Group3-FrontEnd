@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar";
 import { useState } from "react";
 import AdminSignIn from "./pages/admin/AdminSignIn";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import CampaignRequests from "./pages/admin/Components/CampaignRequests";
+import AdminHome from "./pages/admin/Components/AdminHome";
 // import io from 'socket.io-client';
 
 // const socket = io.connect('http://localhost:5000/');

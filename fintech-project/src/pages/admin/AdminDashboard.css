@@ -53,6 +53,31 @@
   font-size: 40px !important;
   /* margin-right: 20px !important; */
 }
+
+.campaign-tab {
+  height: max-content !important;
+  margin-bottom: 0px !important;
+}
+.campaign-tab h4{
+  color: white;
+}
+.campaign-icon {
+  color: white !important;
+  font-size: 40px !important;
+  /* margin-right: 20px !important; */
+}
+.admins-tab {
+  height: max-content !important;
+  margin-bottom: 0px !important;
+}
+.admins-icon {
+  color: white !important;
+  font-size: 40px !important;
+  /* margin-right: 20px !important; */
+}
+.admins-tab h4{
+  color: white;
+}
 .body-header{
     height: 90px;
     background-color: #1E1E1E;
@@ -114,9 +139,15 @@ color: lightgray;
 background-color: green !important;
 
 }
-.reject-button{
+.edit-button{
+  background-color: #38bfc5 !important;
+}
+.reject-button, .delete-button{
   background-color: red !important;
 }
 .dashboard-body{
   overflow: scroll;
+}
+.dropdown-item:hover{
+  background-color: #38bfc5 !important;
 }
