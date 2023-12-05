@@ -1,10 +1,10 @@
 import "../AdminDashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import CampaignRequestsCard from "./CampaignRequestsCard.jsx";
+import CampaignOngoingCard from "./CampaignOngoingCard.jsx";
 import axios from "axios"
 import React, { useEffect, useState } from "react";
 
-const CampaignRequests = () => {
+const CampaignOngoing = () => {
 
 const [campaign, setcampaign]=useState(null);
 
@@ -57,8 +57,8 @@ fetchcampaign();
        
        
 
-        {campaign && campaign.filter(item => item.isApproved === false).map((item, index) => (
- <CampaignRequestsCard key={index} data={item} />
+        {campaign && campaign.filter(item => item.isApproved).map((item, index) => (
+ <CampaignOngoingCard key={index} data={item} />
 ))}
 
 
@@ -69,5 +69,5 @@ fetchcampaign();
   );
 };
 
-export default CampaignRequests;
+export default CampaignOngoing;
 ﻿
