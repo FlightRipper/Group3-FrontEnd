@@ -4,6 +4,7 @@ import NavbarWhite from '../components/NavbarWhite';
 import './custom.scss';
 import { useRegister } from '../hooks/useRegister';
 import { useNavigate } from 'react-router-dom';
+import SpinnerLoading from '../components/SpinnerLoading';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
@@ -24,6 +25,8 @@ const RegisterPage = () => {
   };
   
   return (
+    <>
+      {loading ? <SpinnerLoading /> : (
     <div className="bg-light">
       <NavbarWhite />
       <div className="container d-flex flex-column align-items-center justify-content-center">
@@ -136,6 +139,8 @@ const RegisterPage = () => {
         </form>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

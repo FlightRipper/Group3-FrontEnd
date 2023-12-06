@@ -36,7 +36,7 @@ export const useRegister = () => {
 
         setError('Registration successful')
 
-        navigate('/sigin')
+        navigate('/')
     }
   };
   return {register, loading, error}

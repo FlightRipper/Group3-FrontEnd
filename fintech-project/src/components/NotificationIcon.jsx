@@ -8,7 +8,7 @@ function NotificationIcon() {
   useEffect(() => {
     const socket = io.connect();
 
-    socket.on('notification', (notification) => {
+    socket.on('notifications', (notification) => {
       setNotifications((prevNotifications) => [
         ...prevNotifications,
         notification,
