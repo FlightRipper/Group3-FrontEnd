@@ -9,6 +9,7 @@ import { Link} from "react-router-dom";
 import AdminHome from "./Components/AdminHome.jsx";
 import DashboardAdminsList from "./Components/DashboardAdminsList.jsx";  
 import DashboardUsersList from "./Components/DashboardUsersList.jsx";
+import EditCampaignsDashboard from "./Components/EditCampaignsDashboard.jsx";
 
 const AdminDashboard = () => {
   return (

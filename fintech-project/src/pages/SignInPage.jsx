@@ -61,7 +61,7 @@ const SignInPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-          <div id="passwordHelpBlock" className="form-text opacity-50 w-100 d-none">
+          <div id="passwordHelpBlock" className="form-text opacity-50 w-100">
             Your password must be 8-20 characters long, contain letters and
             numbers and special characters, and must not contain spaces, or
             emojis.

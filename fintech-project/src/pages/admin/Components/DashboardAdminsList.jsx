@@ -8,7 +8,7 @@ const DashboardAdminsList = () => {
         <div className="w-100">
           <div className="dashboard-body w-100 h-100 d-flex row m-0 align-items-center justify-content-center">
             <div className="body-header w-100 d-flex align-items-center  justify-content-between column p-3 m-0 sticky-top">
-              <Dropdown>
+              <Dropdown className='d-none'>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                   Filter By
                 </Dropdown.Toggle>

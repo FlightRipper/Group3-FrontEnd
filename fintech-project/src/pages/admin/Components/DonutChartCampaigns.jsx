@@ -20,8 +20,26 @@ const DonutChartCampaigns = () => {
 
     // Chart options
     const options = {
+    
       cutoutPercentage: 70,
-    };
+      plugins : {
+        legend: {
+          labels: {
+            color : "white",
+            font : {
+              size : 16,
+              family : 'Helvetica Neue',
+            },
+          
+          },          
+        }
+      },
+      layout: {
+        padding: {
+          top: 20, // Adjust the bottom padding between legend and chart as needed
+        },
+      },
+     };
 
     // Create the donut chart
     const myDonutChart = new Chart(ctx, {
@@ -37,7 +55,7 @@ const DonutChartCampaigns = () => {
   }, []);
   return (
     <div className='donut-chart m-5'>
-      <canvas ref={chartRef} width="350" height="350"></canvas>
+      <canvas className="donut" ref={chartRef} width="350" height="350"></canvas>
    </div>
   )
 }
