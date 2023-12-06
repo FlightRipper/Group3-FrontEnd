@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-import "./App.css";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import SigninPage from "./pages/SignInPage";
-import RegisterPage from "./pages/RegisterPage";
-import HomePage from "./pages/HomePage";
-import Navbar from "./components/Navbar";
-import { useState } from "react";
-import AdminSignIn from "./pages/admin/AdminSignIn";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import CampaignRequests from "./pages/admin/Components/CampaignRequests";
-import AdminHome from "./pages/admin/Components/AdminHome";
-// import io from 'socket.io-client';
-
-// const socket = io.connect('http://localhost:5000/');
-
-function App() {
-  const Layout = () => {
-    return (
-      <>
-        <Navbar />
-        <Outlet />
-      </>
-    );
-  };
-=======
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext.jsx';
@@ -31,7 +5,7 @@ import SigninPage from './pages/SignInPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import AdminSignIn from './pages/admin/AdminSignIn';
-import AdminHome from './pages/admin/AdminHome';
+import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import HowItWorksPage from './pages/HowItWorksPage';
 import DonationPage from './pages/DonationPage';
 import { useState, useEffect } from 'react';
@@ -62,27 +36,17 @@ function App() {
   if (loading) {
     return <SpinnerLoading />;
   }
->>>>>>> origin/alisaghir
 
   return (
     <BrowserRouter>
       <Routes>
-<<<<<<< HEAD
-        <Route path="/admin" element={<AdminSignIn />}></Route>
-        <Route path="/admin/home" element={<AdminDashboard />}></Route>
-        <Route path="/Register" element={<RegisterPage />}></Route>
-        <Route path="/SignIn" element={<SigninPage />}></Route>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<HomePage />}></Route>
-        </Route>
-=======
         <Route path="/howitworks" element={<HowItWorksPage />} />
         <Route path="/admin" element={<AdminSignIn />} />
         <Route
           path="/admin/home"
           element={
             user && !user.hasOwnProperty('userType') ? (
-              <AdminHome />
+              <AdminDashboard />
             ) : (
               <Navigate to={'/'} />
             )
@@ -108,7 +72,6 @@ function App() {
             )
           }
         />
->>>>>>> origin/alisaghir
       </Routes>
     </BrowserRouter>
   );
