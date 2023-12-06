@@ -7,7 +7,8 @@ import React, { useEffect, useState } from "react";
 const CampaignOngoing = () => {
 
 const [campaign, setcampaign]=useState(null);
-
+const [selectedCategory, setSelectedCategory] = useState("All");
+const [searchTerm, setSearchTerm] = useState("");
 
 useEffect(()=>{
 
@@ -32,6 +33,13 @@ fetchcampaign();
 
 
 
+const handleFilter=(category)=>{
+  setSelectedCategory(category)
+};
+
+
+
+
 
   return (
     <div className="w-100">
@@ -43,23 +51,31 @@ fetchcampaign();
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Animal</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Medical</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Education</Dropdown.Item>
-              <Dropdown.Item href="#/action-4">View All</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("animal")}>Animal</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("medical")}>Medical</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("education")}>Education</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("All")}>View All</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <div className="admin-search-div">
-            <input type="text" className="admin-search px-3" placeholder="Search" />
+          <input type="text" className="admin-search px-3" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}  style={{ color: 'white' }}/>
           </div>
         </div>
         <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
        
        
 
-        {campaign && campaign.filter(item => item.isApproved).map((item, index) => (
- <CampaignOngoingCard key={index} data={item} />
-))}
+        {campaign &&
+  campaign
+    .filter((item) =>
+      (selectedCategory === "All" || item.category === selectedCategory) &&
+      item.isApproved &&
+      (searchTerm === "" ||
+        (item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())))
+    )
+    .map((item, index) => (
+      <CampaignOngoingCard key={index} data={item} />
+    ))}
 
 
 

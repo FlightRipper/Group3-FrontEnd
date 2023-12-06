@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 const DashboardUsersList = () => {
 
 const [user,setuser]=useState()
-
+const [searchTerm, setSearchTerm] = useState("");
 
 
 
@@ -55,13 +55,7 @@ useEffect(()=>{
               <Dropdown.Item href="#/action-4">View All</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div className="admin-search-div">
-            <input
-              type="text"
-              className="admin-search px-3"
-              placeholder="Search"
-            />
-          </div>
+          <input type="text" className="admin-search px-3" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}  style={{ color: 'white' }}/>
         </div>
         <div className="body-content w-100 p-0">
 
@@ -77,10 +71,20 @@ useEffect(()=>{
                 
               </tr>
             </thead>
-            {user && user.map((item,index)=>(
-<UsersTableData key={index}  data={item}   index={index}   />
 
-            ))}
+{user &&
+  user
+    .filter((item) =>
+      searchTerm === "" ||
+      (item.username &&
+        item.username.toLowerCase().includes(searchTerm.toLowerCase()))
+    )
+    .map((item, index) => (
+      <UsersTableData key={index} data={item} index={index} />
+    ))}
+
+
+
           </table>
         </div>
       </div>
