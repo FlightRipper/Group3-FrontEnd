@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import i10 from '../components/10.png';
 import NavbarWhite from '../components/NavbarWhite';
-import './custom.css';
+import './custom.scss';
 import { useSignIn } from '../hooks/useSignIn';
+import { useNavigate } from 'react-router-dom';
+
 
 const SignInPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   const { signIn, error, loading } = useSignIn();
 
@@ -16,7 +19,10 @@ const SignInPage = () => {
 
     // Get the input values from the signIn hook
     await signIn(username, password);
+
+
   };
+
   return (
     <div className="bg-light">
       <NavbarWhite />

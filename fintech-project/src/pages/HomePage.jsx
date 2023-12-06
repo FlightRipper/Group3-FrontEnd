@@ -2,11 +2,14 @@ import React from 'react';
 import i20 from './25.png';
 import i21 from './26.png';
 import i22 from './27.png';
+import './custom.scss';
 import Navbar from '../components/Navbar';
+import HowItWorksPage from './HowItWorksPage';
 
 const home = () => {
   return (
     <div>
+      <Navbar />
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"
@@ -68,6 +71,7 @@ const home = () => {
           <h3>Raise and donate funds for what you care about</h3>
         </div>
       </div>
+      <HowItWorksPage/>
     </div>
   );
 };
