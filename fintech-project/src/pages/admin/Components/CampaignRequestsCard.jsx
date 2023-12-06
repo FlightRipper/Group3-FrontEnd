@@ -1,5 +1,4 @@
 import React from 'react'
-import CampaignImage from "../campaign.jpg"
 import "../AdminDashboard.css";
 import axios from 'axios';
 
@@ -10,7 +9,7 @@ const CampaignRequestsCard = ({data}) => {
   const onApprove = async () => {
     try {
       const response = await axios.patch(`http://localhost:5001/campaigns/${data.id}`, {
-        isApproved: true
+        isApproved: true,
       });
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);

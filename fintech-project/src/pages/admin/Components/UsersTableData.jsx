@@ -1,14 +1,14 @@
 import React from 'react'
 
-const UsersTableData = () => {
+const UsersTableData = ({data,index}) => {
   return (
       <tbody>
               <tr>
-                <td className='user-id-dashboard'>1</td>
-                <td className='user-username-dashboard'>username</td>
-                <td className='user-email-dashboard'>email</td>
-                <td className='user-balance-dashboard'>balance</td>
-                <td className='user-usertype-dashboard'>usertype</td>
+                <td className='user-id-dashboard'>{index+1}</td>
+                <td className='user-username-dashboard'>{data.username}</td>
+                <td className='user-email-dashboard'>{data.email}</td>
+                <td className='user-balance-dashboard'>{data.balance}</td>
+                <td className='user-usertype-dashboard'>{data.userType}</td>
                 <td className='user-action-dashboard'>
                 <i class="bi bi-trash"></i>
                 </td>
@@ -17,4 +17,4 @@ const UsersTableData = () => {
   )
 }
 
-export default UsersTableData
+export default UsersTableData;

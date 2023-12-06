@@ -31,7 +31,6 @@ function App() {
         <Route path="/admin/home" element={<AdminDashboard />}></Route>
         <Route path="/Register" element={<RegisterPage />}></Route>
         <Route path="/SignIn" element={<SigninPage />}></Route>
-        <Route path="/admin" element={<HomePage />}></Route>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<HomePage />}></Route>
         </Route>
