@@ -1,10 +1,43 @@
 import "../AdminDashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import CampaignRequestsCard from "./CampaignRequestsCard.jsx";
-
-import React from "react";
+import axios from "axios"
+import React, { useEffect, useState } from "react";
 
 const CampaignRequests = () => {
+
+const [campaign, setcampaign]=useState(null);
+const [selectedCategory, setSelectedCategory] = useState("All");
+const [searchTerm, setSearchTerm] = useState("");
+console.log(selectedCategory)
+
+
+useEffect(()=>{
+
+const fetchcampaign=async()=>{
+  try{
+    const response = await axios.get(
+      "http://localhost:5000/campaigns/"
+    );
+const data = response.data;
+setcampaign(data)
+console.log(data)
+  }
+  catch(error){
+    console.log(error);
+    setcampaign(null)
+  }
+}
+fetchcampaign();
+
+
+},[])
+
+const handleFilter=(category)=>{
+  setSelectedCategory(category)
+};
+
+
   return (
     <div className="w-100">
       <div className="dashboard-body w-100 h-100 d-flex row m-0 align-items-center justify-content-center">
@@ -15,25 +48,41 @@ const CampaignRequests = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Animal</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Medical</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Education</Dropdown.Item>
-              <Dropdown.Item href="#/action-4">View All</Dropdown.Item>
-            </Dropdown.Menu>
+            <Dropdown.Item onClick={()=> handleFilter("animal")}>Animal</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("medical")}>Medical</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("education")}>Education</Dropdown.Item>
+              <Dropdown.Item onClick={()=> handleFilter("All")}>View All</Dropdown.Item>
+          </Dropdown.Menu>
           </Dropdown>
           <div className="admin-search-div">
             <input type="text" className="admin-search px-3" placeholder="Search" />
           </div>
         </div>
         <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
-            <CampaignRequestsCard/>
-            <CampaignRequestsCard/>
-            <CampaignRequestsCard/>
-            <CampaignRequestsCard/>
-            <CampaignRequestsCard/>
+       
+        {/* {campaign &&
+  campaign
+    .filter((item) =>
+      (selectedCategory === "All" || item.category === selectedCategory) &&
+      item.isApproved &&
+      (searchTerm === "" ||
+        (item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())))
+    )
+    .map((item, index) => (
+      <OngoingCampaignsCard key={index} data={item} /> */}
+    {/* ))} */}
+
+        {campaign && campaign.filter((item) =>
+      (selectedCategory === "All" || item.category === selectedCategory) &&
+      item.isApproved === false &&
+      (searchTerm === "" ||
+        (item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())))
+    ).map((item, index) => (
+ <CampaignRequestsCard key={index} data={item} />
+))}
 
 
-            
+
         </div>
       </div>
     </div>

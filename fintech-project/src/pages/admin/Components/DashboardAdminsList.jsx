@@ -2,13 +2,46 @@ import React from 'react'
 import AdminsTableData from './AdminsTableData.jsx';
 import "../AdminDashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
+import  { useEffect, useState } from "react";
+import axios from 'axios';
 
 const DashboardAdminsList = () => {
+
+const [admin,setadmin]=useState()
+
+
+
+
+useEffect(()=>{
+
+  const fetchAdmin=async()=>{
+    try{
+      const response = await axios.get(
+        "http://localhost:5000/admins/"
+      );
+  const data = response.data;
+  setadmin(data)
+  console.log(data)
+    }
+    catch(error){
+      console.log(error);
+      setadmin(null)
+    }
+  }
+  fetchAdmin();
+  
+  
+  },[])
+
+
+
+
+
     return (
         <div className="w-100">
           <div className="dashboard-body w-100 h-100 d-flex row m-0 align-items-center justify-content-center">
             <div className="body-header w-100 d-flex align-items-center  justify-content-between column p-3 m-0 sticky-top">
-              <Dropdown className='d-none'>
+              <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                   Filter By
                 </Dropdown.Toggle>
@@ -39,16 +72,11 @@ const DashboardAdminsList = () => {
                   </tr>
                 </thead>
                 
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
-                <AdminsTableData/>
+                {admin && admin.map((item,index)=>(
+<AdminsTableData key={index}  data={item}   index={index}   />
+
+            ))}
+
 
 
     

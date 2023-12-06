@@ -1,10 +1,46 @@
 import "../AdminDashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import UsersTableData from "./UsersTableData.jsx";
-
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 const DashboardUsersList = () => {
+const [user,setuser]=useState()
+const [searchTerm, setSearchTerm] = useState("");
+
+
+
+useEffect(()=>{
+
+  const fetchUser=async()=>{
+    try{
+      const response = await axios.get(
+        "http://localhost:5000/users/"
+      );
+  const data = response.data;
+  setuser(data)
+  console.log(data)
+    }
+    catch(error){
+      console.log(error);
+      setuser(null)
+    }
+  }
+  fetchUser();
+  
+  
+  },[])
+
+
+
+
+
   return (
+
+
+
+
+
+
     <div className="w-100">
       <div className="dashboard-body w-100 h-100 d-flex row m-0 align-items-center justify-content-center">
         <div className="body-header w-100 d-flex align-items-center  justify-content-between column p-3 m-0 sticky-top">
@@ -14,17 +50,12 @@ const DashboardUsersList = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">User Role</Dropdown.Item>
+              <Dropdown.Item href="#/action-1">User Role: Donor</Dropdown.Item>
+              <Dropdown.Item href="#/action-1">User Role: Owner</Dropdown.Item>
               <Dropdown.Item href="#/action-4">View All</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <div className="admin-search-div">
-            <input
-              type="text"
-              className="admin-search px-3"
-              placeholder="Search"
-            />
-          </div>
+          <input type="text" className="admin-search px-3" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}  style={{ color: 'white' }}/>
         </div>
         <div className="body-content w-100 p-0">
 
@@ -40,27 +71,19 @@ const DashboardUsersList = () => {
                 
               </tr>
             </thead>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            <UsersTableData/>
-            
+
+{user &&
+  user
+    .filter((item) =>
+      searchTerm === "" ||
+      (item.username &&
+        item.username.toLowerCase().includes(searchTerm.toLowerCase()))
+    )
+    .map((item, index) => (
+      <UsersTableData key={index} data={item} index={index} />
+    ))}
+
+
 
           </table>
         </div>
