@@ -4,6 +4,7 @@ import i10 from './10.png';
 import '../pages/custom.scss';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useLogOut } from '../hooks/useLogOut';
+import NotificationIcon from './NotificationIcon'
 
 
 const Navbar = () => {
@@ -16,15 +17,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-transparent fixed-top px-5 py-4 justify-content-end bg-white">
-        <div className="container-fluid d-flex justify-content-between">
-          <div className="d-flex">
-          <img src={i10} alt="" className="w-25 h-25" />
+      <nav className="navbar navbar-expand-lg px-5 py-4 fixed-top">
+        <div className="container-fluid justify-content-between">
+          <div className='d-flex'>
+          <img src={i10} alt="" className="w-25 h-25 custom-image-class" />
             <Link to={'/'}>
               <div className="row"></div>
             </Link>
+          </div>
             <button
-              className="navbar-toggler"
+              className="navbar-toggler custom-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -34,9 +36,8 @@ const Navbar = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-          </div>
           <div
-            className="collapse navbar-collapse justify-content-end mx-5"
+            className="collapse navbar-collapse justify-content-end"
             id="navbarNavDropdown"
           >
             <ul className="navbar-nav">
@@ -86,7 +87,7 @@ const Navbar = () => {
                 </ul>
               </li>
               {user && (
-                <li className="nav-item d-flex justify-content-between align-items-baseline gap-3">
+                <li className="nav-item d-flex justify-content-between align-items-baseline gap-3 custom-navlink-for-user-and-notification">
                   <Link
                     className="nav-link"
                     onClick={handleClick}
@@ -94,7 +95,11 @@ const Navbar = () => {
                   >
                     Log out
                   </Link>
-                  <i className="bi bi-person text-white h4"></i>
+                  <div className='d-flex gap-4 align-items-baseline'>
+                  <i><NotificationIcon /></i>
+                  <i className="bi bi-person text-info h4"></i>
+                  <i className='text-info'>{user.username}</i>
+                  </div>
                 </li>
               )}
             </ul>
