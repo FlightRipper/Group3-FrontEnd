@@ -37,7 +37,6 @@ export const useSignIn = () => {
         setError('Authentication successful');
         
         navigate('/')
-        
     }
   };
   return {signIn, loading, error}

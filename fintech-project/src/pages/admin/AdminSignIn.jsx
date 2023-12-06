@@ -2,6 +2,7 @@ import { useState } from 'react';
 import i10 from '../../components/10.png';
 import '../custom.scss';
 import { useSignInAdmin } from '../../hooks/useSignInAdmin';
+import SpinnerLoading from '../../components/SpinnerLoading';
 
 const AdminSignIn = () => {
   const [username, setUsername] = useState('');
@@ -16,6 +17,8 @@ const AdminSignIn = () => {
     await signInAdmin(username, password);
   };
   return (
+    <>
+    {loading ? <SpinnerLoading /> : (
     <div className="bg-light">
       <div className="container d-flex flex-column align-items-center justify-content-center">
         <img src={i10} alt="" className="w-50 mt-5 mb-5" />
@@ -87,6 +90,8 @@ const AdminSignIn = () => {
         </form>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

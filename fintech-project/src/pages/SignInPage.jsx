@@ -5,6 +5,8 @@ import NavbarWhite from '../components/NavbarWhite';
 import './custom.scss';
 import { useSignIn } from '../hooks/useSignIn';
 import { useNavigate } from 'react-router-dom';
+import SpinnerLoading from '../components/SpinnerLoading';
+import { Spinner } from 'react-bootstrap';
 
 
 const SignInPage = () => {
@@ -24,6 +26,8 @@ const SignInPage = () => {
   };
 
   return (
+    <>
+      {loading ? <SpinnerLoading /> : (
     <div className="bg-light">
       <NavbarWhite />
       <div className="container d-flex flex-column align-items-center justify-content-center">
@@ -99,6 +103,8 @@ const SignInPage = () => {
         </form>
       </div>
     </div>
+      )}
+    </>
   );
 };
 
