@@ -4,6 +4,7 @@ import UsersTableData from "./UsersTableData.jsx";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 const DashboardUsersList = () => {
+
 const [user,setuser]=useState()
 const [searchTerm, setSearchTerm] = useState("");
 
@@ -26,13 +27,24 @@ useEffect(()=>{
     }
   }
   fetchUser();
-  
-  
   },[])
 
 
+  const handleDataChanges = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/users/');
+      const data = response.data;
+      setuser(data);
+    } catch (error) {
+      console.log(error);
+      setuser(null);
+    }
+  };
 
-
+  const handleDelete = async (deletedUserId) => {
+    // Update the user state after deletion
+    setuser((prevUser) => prevUser.filter((user) => user.id !== deletedUserId));
+  };
 
   return (
 
@@ -80,7 +92,7 @@ useEffect(()=>{
         item.username.toLowerCase().includes(searchTerm.toLowerCase()))
     )
     .map((item, index) => (
-      <UsersTableData key={index} data={item} index={index} />
+      <UsersTableData key={index} data={item} index={index} onDelete={handleDelete}/>
     ))}
 
 

@@ -17,6 +17,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg bg-light shadow px-5 py-4 justify-content-end bg-white">
         <div className="container-fluid d-flex justify-content-between">
           <div className="d-flex">
+          <img src={i10} alt="" className="w-25 h-25 custom-image-class" />
             <Link to={'/'}>
               <div className="row"></div>
             </Link>
