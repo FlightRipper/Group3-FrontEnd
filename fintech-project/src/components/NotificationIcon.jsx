@@ -23,12 +23,12 @@ console.log(notifications);
   return (
     <div className="notification-icon">
       <button
-        className="notification-button bg-transparent border-0"
+        className="notification-button bg-transparent border-0 nav-link"
         onClick={() => setShowNotifications(!showNotifications)}
       >
-        <i className="bi bi-bell-fill text-info h5"></i>
+        <i className="bi bi-bell-fill h5"></i>
         {notifications.length > 0 && (
-          <span>{notifications.length}</span>
+          <span className='nav-link'>{notifications.length}</span>
         )}
       </button>
       {showNotifications && (

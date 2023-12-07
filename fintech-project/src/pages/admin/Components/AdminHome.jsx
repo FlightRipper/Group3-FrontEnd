@@ -1,12 +1,12 @@
-import React from 'react'
-import DonutChartCampaigns from './DonutChartCampaigns.jsx'
-import "../AdminDashboard.css";
+import React from 'react';
+import DonutChartCampaigns from './DonutChartCampaigns.jsx';
+import '../AdminDashboard.css';
 const AdminHome = () => {
   return (
     <div className="">
-        <DonutChartCampaigns/>
+      <DonutChartCampaigns />
     </div>
-  )
-}
+  );
+};
 
-export default AdminHome
+export default AdminHome;

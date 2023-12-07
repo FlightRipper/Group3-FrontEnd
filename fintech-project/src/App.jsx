@@ -41,7 +41,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/howitworks" element={<HowItWorksPage />} />
-        <Route path="/admin" element={<AdminSignIn />} />
+        <Route path="/admin" element={!user ? <AdminSignIn /> : <Navigate to={'/'} />} />
         <Route
           path="/admin/home"
           element={
