@@ -41,6 +41,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+      <Route path="/donation" element={<DonationPage />} />
+
       <Route path="/campaigns" element={<CampaignsPage />} />
         <Route path="/howitworks" element={<HowItWorksPage />} />
         <Route path="/admin" element={<AdminSignIn />} />

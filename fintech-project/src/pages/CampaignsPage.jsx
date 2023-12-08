@@ -12,6 +12,11 @@ const CampaignsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
 
+
+  const handleFilter=(category)=>{
+    setSelectedCategory(category)
+  };
+
   useEffect(()=>{
 
     const fetchcampaign=async()=>{
@@ -37,14 +42,12 @@ const CampaignsPage = () => {
 
   return (
     <div className="w-100 vh-100">
-    <Navbar/>
+    <Navbar handleFilter={handleFilter}/>
     
     <div className='campaign-request-card-home-container d-flex flow-row justify-content-center align-items-center gap-5'>
     {campaign && campaign.filter((item) =>
       (selectedCategory === "All" || item.category === selectedCategory) &&
-      item.isApproved &&
-      (searchTerm === "" ||
-        (item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())))
+      item.isApproved
     ).map((item, index) => (
  <HomeCampaignsCards className="home-campaigns-cards" key={index} data={item} />
 ))}

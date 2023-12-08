@@ -7,6 +7,14 @@ import axios from 'axios'
 
 const HomeCampaignsCards = ({data}) => {
 
+  // const handleDonate=async()=>{
+  //   try{
+  //     await 
+  //   } catch(error){
+
+
+  //   }
+  // }
 
   return (
     <>
@@ -17,7 +25,7 @@ const HomeCampaignsCards = ({data}) => {
         <p className='px-3 py-1 campaign-description-home text-center'>{data.description}</p>
         <div className='mt-auto mb-4 d-flex flex-column align-items-center justify-content-center'>
           <p className='campaign-target-home text-center'>Target Amount: $ <span>{data.targetAmount}</span></p>
-          <input className='mb-2' type='range' min='0' max='10' value='1' disabled></input>
+          <input className='mb-2' type='range' min='0' max={data.targetAmount} value={data.totalDonations} disabled></input>
           <p className='campaign-owner-home text-center'>Created by: <span>{data.User.username}</span></p>
           <button type="button" className="btn btn-primary donate-button-home px-5">Donate Now</button>
         </div>
