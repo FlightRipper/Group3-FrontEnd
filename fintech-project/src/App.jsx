@@ -11,6 +11,7 @@ import DonationPage from './pages/DonationPage';
 import Navbar from './components/Navbar.jsx';
 import { useState, useEffect } from 'react';
 import SpinnerLoading from './components/SpinnerLoading.jsx';
+import CampaignsPage from './pages/CampaignsPage.jsx';
 
 
 const Layout = () => {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         </Route>
         <Route path="/howitworks" element={<HowItWorksPage />} />
+        <Route path="/campaigns" element={<CampaignsPage />} />
         <Route path="/admin" element={!user ? <AdminSignIn /> : <Navigate to={'/'} />} />
         <Route
           path="/admin/home"

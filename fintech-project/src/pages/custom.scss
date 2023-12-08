@@ -997,3 +997,66 @@ font-family: Asap !important;
     opacity: 1;
   }
 }
+
+.campaign-request-card-home-container{
+
+  width: 100% !important;
+  height: 100vh !important;
+  background-color: #f7f7f7;
+  gap: 100px;
+  // flex-wrap: wrap !important;
+
+}
+
+.campaign-request-card-home{
+  border: 1px solid #38bfc5 !important;
+  height: 60% !important;
+  width: 20% !important;
+
+
+
+}
+.home-campaigns-cards{
+flex-basis: 33.33% !important;
+}
+
+.campaign-pic-home{
+  border-top-right-radius: 15px ;
+  border-top-left-radius: 15px;
+  height: 40%;
+  border-bottom: 1px solid #38bfc5;
+}
+
+.campaign-category-home{
+  background-color: #38bfc5;
+  width: max-content !important;
+  height: max-content !important;
+  z-index: 1;
+  top: 35%;
+  left: 81.70%;
+  border-bottom-right-radius: 8px;
+  font-family: sans-serif;
+}
+
+.campaign-title-home{
+  color: black !important;
+  text-transform: uppercase;
+}
+
+.campaign-description-home{
+  font-size: smaller;
+  color:#838694;
+}
+
+.campaign-target-home{
+  color: lightgray;
+}
+
+.campaign-owner-home{
+  font-size: smaller;
+  color: lightgray;
+}
+
+.donate-button-home{
+  background-color: #38bfc5 !important;
+}
