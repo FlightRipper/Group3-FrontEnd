@@ -63,7 +63,7 @@ const Navbar = () => {
                 >
                   Raise For
                 </Link>
-                <ul className="dropdown-menu bg-dark">
+                <ul className="dropdown-menu bg-light">
                   <li>
                     <Link className="dropdown-item" to={''}>
                       Animals
