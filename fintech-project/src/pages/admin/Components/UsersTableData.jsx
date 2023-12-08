@@ -4,7 +4,9 @@ import axios from 'axios';
 const UsersTableData = ({ data, index, onDelete }) => {
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:5000/users/${data.id}`);
+      const response = await axios.delete(
+        `http://localhost:5000/users/${data.id}`
+      );
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

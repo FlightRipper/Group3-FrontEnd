@@ -42,8 +42,6 @@ const CampaignsPage = () => {
 
   return (
     <div className="w-100 vh-100">
-    <Navbar handleFilter={handleFilter}/>
-    
     <div className='campaign-request-card-home-container d-flex flow-row justify-content-center align-items-center gap-5'>
     {campaign && campaign.filter((item) =>
       (selectedCategory === "All" || item.category === selectedCategory) &&

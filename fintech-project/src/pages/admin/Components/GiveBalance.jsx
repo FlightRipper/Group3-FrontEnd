@@ -1,23 +1,23 @@
 import React from 'react';
-import AdminsTableData from './AdminsTableData.jsx';
+import GiveBalanceData from './GiveBalanceData'
 import '../AdminDashboard.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const DashboardAdminsList = () => {
-  const [admin, setadmin] = useState();
+const GiveBalance = () => {
+  const [users, setUsers] = useState();
 
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/admins/');
+        const response = await axios.get('http://localhost:5000/users');
         const data = response.data;
-        setadmin(data);
+        setUsers(data);
         console.log(data);
       } catch (error) {
         console.log(error);
-        setadmin(null);
+        setUsers(null);
       }
     };
     fetchAdmin();
@@ -52,13 +52,13 @@ const DashboardAdminsList = () => {
                 <th scope="col">#</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
-                <th scope="col">Action</th>
+                <th scope="col">Charging amount</th>
               </tr>
             </thead>
 
-            {admin &&
-              admin.map((item, index) => (
-                <AdminsTableData key={index} data={item} index={index} />
+            {users &&
+              users.map((item, index) => (
+                <GiveBalanceData key={index} data={item} index={index} />
               ))}
           </table>
         </div>
@@ -67,4 +67,4 @@ const DashboardAdminsList = () => {
   );
 };
 
-export default DashboardAdminsList;
+export default GiveBalance;

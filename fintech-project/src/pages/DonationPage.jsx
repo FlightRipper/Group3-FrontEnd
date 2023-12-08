@@ -88,7 +88,6 @@ const DonationPage = () => {
 
   return (
     <>
-    <Navbar/>
     <div className = "sh7ade-page">
       <div className = "sh7ade-page-LeftSide">
         <h1 className = "sh7abe-page-LeftSide-Title">{/*{campaign.title}*/}Title kousa kousa</h1>

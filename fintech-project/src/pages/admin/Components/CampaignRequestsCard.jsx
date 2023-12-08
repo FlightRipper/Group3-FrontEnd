@@ -1,5 +1,5 @@
-import React from 'react'
-import "../AdminDashboard.css";
+import React from 'react';
+import '../AdminDashboard.css';
 import axios from 'axios';
 
 export default function CampaignRequestsCard({data}) {

@@ -17,16 +17,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg px-5 py-4 fixed-top">
-        <div className="container-fluid justify-content-between">
-          <div className='d-flex'>
+      <nav className="navbar navbar-expand-lg px-5 bg-light shadow-lg">
+        <div className="container-fluid justify-content-between align-items-center">
+          <div className='d-flex justify-content-between'>
           <img src={i10} alt="" className="w-25 h-25 custom-image-class" />
             <Link to={'/'}>
               <div className="row"></div>
             </Link>
           </div>
             <button
-              className="navbar-toggler custom-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -87,7 +87,7 @@ const Navbar = () => {
                 </ul>
               </li>
               {user && (
-                <li className="nav-item d-flex justify-content-between align-items-baseline gap-3 custom-navlink-for-user-and-notification">
+                <li className="nav-item d-flex custom-navlink-for-user-and-notification">
                   <Link
                     className="nav-link"
                     onClick={handleClick}
@@ -95,10 +95,9 @@ const Navbar = () => {
                   >
                     Log out
                   </Link>
-                  <div className='d-flex gap-4 align-items-baseline'>
+                  <div className='d-flex gap-3' >
                   <i><NotificationIcon /></i>
-                  <i className="bi bi-person text-info h4"></i>
-                  <i className='text-info'>{user.username}</i>
+                  <i className='nav-link text-info'>{user.username}</i>
                   </div>
                 </li>
               )}

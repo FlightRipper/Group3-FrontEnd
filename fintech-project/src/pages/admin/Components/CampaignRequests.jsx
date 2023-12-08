@@ -1,42 +1,33 @@
-import "../AdminDashboard.css";
-import Dropdown from "react-bootstrap/Dropdown";
-import CampaignRequestsCard from "./CampaignRequestsCard.jsx";
-import axios from "axios"
-import React, { useEffect, useState } from "react";
+import '../AdminDashboard.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import CampaignRequestsCard from './CampaignRequestsCard.jsx';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const CampaignRequests = () => {
+  const [campaign, setcampaign] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
+  console.log(selectedCategory);
 
-const [campaign, setcampaign]=useState(null);
-const [selectedCategory, setSelectedCategory] = useState("All");
-const [searchTerm, setSearchTerm] = useState("");
-console.log(selectedCategory)
+  useEffect(() => {
+    const fetchcampaign = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/campaigns/');
+        const data = response.data;
+        setcampaign(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        setcampaign(null);
+      }
+    };
+    fetchcampaign();
+  }, []);
 
-
-useEffect(()=>{
-
-const fetchcampaign=async()=>{
-  try{
-    const response = await axios.get(
-      "http://localhost:5000/campaigns/"
-    );
-const data = response.data;
-setcampaign(data)
-console.log(data)
-  }
-  catch(error){
-    console.log(error);
-    setcampaign(null)
-  }
-}
-fetchcampaign();
-
-
-},[])
-
-const handleFilter=(category)=>{
-  setSelectedCategory(category)
-};
-
+  const handleFilter = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div className="w-100">
@@ -48,14 +39,26 @@ const handleFilter=(category)=>{
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-            <Dropdown.Item onClick={()=> handleFilter("animal")}>Animal</Dropdown.Item>
-              <Dropdown.Item onClick={()=> handleFilter("medical")}>Medical</Dropdown.Item>
-              <Dropdown.Item onClick={()=> handleFilter("education")}>Education</Dropdown.Item>
-              <Dropdown.Item onClick={()=> handleFilter("All")}>View All</Dropdown.Item>
-          </Dropdown.Menu>
+              <Dropdown.Item onClick={() => handleFilter('animal')}>
+                Animal
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter('medical')}>
+                Medical
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter('education')}>
+                Education
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter('All')}>
+                View All
+              </Dropdown.Item>
+            </Dropdown.Menu>
           </Dropdown>
           <div className="admin-search-div">
-            <input type="text" className="admin-search px-3" placeholder="Search" />
+            <input
+              type="text"
+              className="admin-search px-3"
+              placeholder="Search"
+            />
           </div>
         </div>
         <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
