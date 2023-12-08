@@ -97,7 +97,7 @@ const Navbar = () => {
                   </Link>
                   <div className='d-flex gap-3' >
                   <i><NotificationIcon /></i>
-                  <i className='nav-link'>{user.username}</i>
+                  <i className='nav-link text-info'>{user.username}</i>
                   </div>
                 </li>
               )}

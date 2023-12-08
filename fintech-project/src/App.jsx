@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext.jsx';
 import SigninPage from './pages/SignInPage';
 import RegisterPage from './pages/RegisterPage';
@@ -8,11 +8,19 @@ import AdminSignIn from './pages/admin/AdminSignIn';
 import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import HowItWorksPage from './pages/HowItWorksPage';
 import DonationPage from './pages/DonationPage';
+import Navbar from './components/Navbar.jsx';
 import { useState, useEffect } from 'react';
 import SpinnerLoading from './components/SpinnerLoading.jsx';
-import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000');
+
+const Layout = () => {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+ };
 
 function App() {
   const { user } = useAuthContext();
@@ -40,6 +48,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<HomePage />} />
+        </Route>
         <Route path="/howitworks" element={<HowItWorksPage />} />
         <Route path="/admin" element={!user ? <AdminSignIn /> : <Navigate to={'/'} />} />
         <Route
@@ -60,7 +71,6 @@ function App() {
           path="/SignIn"
           element={!user ? <SigninPage /> : <Navigate to={'/'} />}
         />
-        <Route path="/" element={<HomePage />} />
         <Route
           path="/Donation"
           element={

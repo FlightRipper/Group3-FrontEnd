@@ -9,7 +9,6 @@ import HowItWorksPage from './HowItWorksPage';
 const home = () => {
   return (
     <div>
-      <Navbar />
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"

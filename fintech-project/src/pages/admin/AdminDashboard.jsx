@@ -9,6 +9,7 @@ import AdminHome from './Components/AdminHome.jsx';
 import DashboardAdminsList from './Components/DashboardAdminsList.jsx';
 import DashboardUsersList from './Components/DashboardUsersList.jsx';
 import OngoingCampaigns from './Components/OngoingCampaigns.jsx';
+import GiveBalance from './Components/GiveBalance.jsx';
 
 const AdminDashboard = () => {
   const [selectedTab, setSelectedTab] = useState('Home');
@@ -54,6 +55,15 @@ const AdminDashboard = () => {
                 <h4 className="mt-3 mx-3">Admins</h4>
               </Link>
             </div>
+            <div className="admins-tab d-flex flex-row p-2 align-items-center justify-content-center w-100 mb-5">
+              <Link
+                className="d-flex align-items-center text-decoration-none"
+                onClick={() => setSelectedTab('Charge Balance')}
+              >
+                <i className="admins-icon bi bi-coin"></i>
+                <h4 className="mt-3 mx-3">Charge Balance</h4>
+              </Link>
+            </div>
             <div className="campaign-tab d-flex flex-row p-2 align-items-center justify-content-center w-100">
               <i className=" campaign-icon bi bi-bank"></i>
 
@@ -87,6 +97,7 @@ const AdminDashboard = () => {
             </div>
           </div>
           {selectedTab === 'Admin' && <DashboardAdminsList />}
+          {selectedTab === 'Charge Balance' && <GiveBalance />}
           {selectedTab === 'Users' && <DashboardUsersList />}
           {selectedTab === 'requests' && <CampaignRequests />}
           {selectedTab === 'ongoing' && <OngoingCampaigns />}
