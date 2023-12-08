@@ -3,10 +3,12 @@ import i20 from './25.png';
 import i21 from './26.png';
 import i22 from './27.png';
 import './custom.scss';
-import Navbar from '../components/Navbar';
 import HowItWorksPage from './HowItWorksPage';
+import axios from 'axios';
+
 
 const home = () => {
+
   return (
     <div>
       <div

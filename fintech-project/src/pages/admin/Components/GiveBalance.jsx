@@ -20,6 +20,15 @@ const GiveBalance = () => {
         setUsers(null);
       }
     };
+    axios.interceptors.request.use(
+      config => {
+        console.log(config.headers);
+        return config;
+      },
+      error => {
+        return Promise.reject(error);
+      }
+     );
     fetchAdmin();
   }, []);
 

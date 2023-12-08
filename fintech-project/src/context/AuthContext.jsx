@@ -1,4 +1,5 @@
 import { createContext, useReducer,useEffect } from "react";
+import axios from 'axios'
 
 
 export const AuthContext = createContext()
@@ -25,9 +26,15 @@ export const AuthContextProvider = ({ children }) => {
     const user = JSON.parse(localStorage.getItem('user'))
 
     if(user){
-      dispatch({type: 'LOGIN', payload: user})
+      dispatch({type: 'LOGIN', payload: user});
     }
+
+    if (user && user.token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+     }
+
   },[])
+  
 
   console.log('Auth Context state:', state);
 
