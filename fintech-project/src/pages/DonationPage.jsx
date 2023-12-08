@@ -27,7 +27,7 @@ const DonationPage = () => {
       const newAmount = campaign.balance + inputValue;
 
       try {
-        const response = await axios.patch(`https://localhost:5000/campaigns/${campaignId}`, {
+        const response = await axios.patch(`https://localhost:4000/campaigns/${campaignId}`, {
           'amount': newAmount,
         });
         console.log(response);
@@ -37,7 +37,7 @@ const DonationPage = () => {
 
       const UserBalance = user.balance - inputValue
       try {
-        const response = await axios.patch(`https://localhost:5000/users/${user.id}`, {
+        const response = await axios.patch(`https://localhost:4000/users/${user.id}`, {
           'balance': UserBalance,
         });
         console.log(response);
@@ -54,7 +54,7 @@ const DonationPage = () => {
     const fetchCampaign = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:5000/campaigns/${campaignId}`
+          `https://localhost:4000/campaigns/${campaignId}`
         );
         const campaignData = response.data;
         setCampaign(campaignData);
@@ -68,7 +68,7 @@ const DonationPage = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:5000/users/${UserId}`
+          `https://localhost:4000/users/${UserId}`
         );
         const data = response.data;
         SetUser(data);

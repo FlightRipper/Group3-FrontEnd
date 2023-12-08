@@ -19,7 +19,7 @@ const HomeCampaignsCards = ({data}) => {
   return (
     <>
     <div className="campaign-request-card-home p-0 rounded-4 d-flex flex-column">
-        <img src={`http://localhost:5000/uploads/${data.image}`} className="campaign-pic-home w-100 p-0 relative "></img>
+        <img src={`http://localhost:4000/uploads/${data.image}`} className="campaign-pic-home w-100 p-0 relative "></img>
         <div className="campaign-category-home p-1">{data.category}</div>
         <h3 className="campaign-title-home h3 m-0 py-2 relative text-center">{data.title}</h3>
         <p className='px-3 py-1 campaign-description-home text-center'>{data.description}</p>

@@ -13,7 +13,7 @@ const OngoingCampaigns = () => {
   useEffect(() => {
     const fetchcampaign = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/campaigns/');
+        const response = await axios.get('http://localhost:4000/campaigns/');
         const data = response.data;
         setcampaign(data);
         console.log(data);

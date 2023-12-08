@@ -6,10 +6,10 @@ export default function CampaignRequestsCard({data}) {
 
  const onApprove = async () => {
    try {
-     const response = await axios.patch(`http://localhost:5000/campaigns/${data.id}`, {
+     const response = await axios.patch(`http://localhost:4000/campaigns/${data.id}`, {
        isApproved: true,
      });
-     const adminResponse= await axios.patch(`http://localhost:5000/admins/approve/admin/${data.Admin.id}/campaign/${data.id}`)
+     const adminResponse= await axios.patch(`http://localhost:4000/admins/approve/admin/${data.Admin.id}/campaign/${data.id}`)
      if (response.status !== 200 ) {
        throw new Error(`HTTP error! status: ${response.status}`);
      }
@@ -21,7 +21,7 @@ export default function CampaignRequestsCard({data}) {
   
   const onReject = async () => {
    try {
-     const response = await axios.delete(`http://localhost:5000/campaigns/${data.id}`);
+     const response = await axios.delete(`http://localhost:4000/campaigns/${data.id}`);
      if (response.status !== 200) {
        throw new Error(`HTTP error! status: ${response.status}`);
      }
@@ -33,7 +33,7 @@ export default function CampaignRequestsCard({data}) {
 
  return (
     <div className="campaign-request-card p-0 rounded-4 d-flex flex-column my-3 no-gutters">
-      <img src={`http://localhost:5000/uploads/${data.image}`} className="campaign-pic w-100 p-0 relative "></img>
+      <img src={`http://localhost:4000/uploads/${data.image}`} className="campaign-pic w-100 p-0 relative "></img>
       <div className="campaign-category p-1">{data.category}</div>
       <h3 className="campaign-title h3 m-0 py-2 relative text-center">{data.title}</h3>
       <p className='px-3 py-1 campaign-description text-center'> {data.description}</p>

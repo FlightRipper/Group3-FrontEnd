@@ -1,16 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-const AdminsTableData = ({ data, index }) => {
+const AdminsTableData = ({ data, index, onDelete }) => {
   const ondelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/admins/${data.id}`
+        `http://localhost:4000/admins/${data.id}`
       );
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       // Handle success case here
+      onDelete(data.id);
     } catch (error) {
       console.error('There was an error!', error);
     }

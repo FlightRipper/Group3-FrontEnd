@@ -15,7 +15,7 @@ useEffect(()=>{
   const fetchUser=async()=>{
     try{
       const response = await axios.get(
-        "http://localhost:5000/users/"
+        "http://localhost:4000/users/"
       );
   const data = response.data;
   setuser(data)
@@ -32,7 +32,7 @@ useEffect(()=>{
 
   const handleDataChanges = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/users/');
+      const response = await axios.get('http://localhost:4000/users/');
       const data = response.data;
       setuser(data);
     } catch (error) {

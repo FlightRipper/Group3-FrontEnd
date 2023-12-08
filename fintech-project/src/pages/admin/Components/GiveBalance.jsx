@@ -11,7 +11,7 @@ const GiveBalance = () => {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users');
+        const response = await axios.get('http://localhost:4000/users');
         const data = response.data;
         setUsers(data);
         console.log(data);
@@ -22,6 +22,8 @@ const GiveBalance = () => {
     };
     fetchAdmin();
   }, []);
+
+  
 
   return (
     <div className="w-100">

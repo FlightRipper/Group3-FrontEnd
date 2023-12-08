@@ -50,9 +50,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/donation' element={<DonationPage/>}/>
-        <Route path='/campaigns' element={<CampaignsPage/>}/>
 
         <Route path='/' element={<Layout />}>
+        <Route path='/campaigns' element={<CampaignsPage/>}/>
         <Route path="/" element={<HomePage />} />
         </Route>
         <Route path="/howitworks" element={<HowItWorksPage />} />

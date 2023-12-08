@@ -7,7 +7,7 @@ const GiveBalanceData = ({ data, index }) => {
     const amount = e.target.elements.amount.value
 
     try {
-      const response = await axios.patch(`http://localhost:5000/admins/balance/user/${data.id}` ,amount);
+      const response = await axios.patch(`http://localhost:4000/admins/balance/user/${data.id}` ,amount);
         console.log(response);
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);

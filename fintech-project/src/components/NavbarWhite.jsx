@@ -7,13 +7,15 @@ import { useLogOut } from '../hooks/useLogOut';
 import NotificationIcon from './NotificationIcon'
 
 
-const Navbar = () => {
+const Navbar = ({handleFilter}) => {
   const { logout } = useLogOut();
   const { user } = useAuthContext();
 
   const handleClick = () => {
     logout();
   };
+
+  
 
   return (
     <>
@@ -64,22 +66,22 @@ const Navbar = () => {
                 </Link>
                 <ul className="dropdown-menu bg-dark">
                   <li>
-                    <Link className="dropdown-item" to={''}>
+                    <Link className="dropdown-item" to={''} onClick={()=>handleFilter("animal")}>
                       Animals
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to={''}>
+                    <Link className="dropdown-item" to={''}onClick={()=>handleFilter("medical")}>
                       Medical
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to={''}>
+                    <Link className="dropdown-item" to={''} onClick={()=>handleFilter("education")}>
                       Education
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to={''}>
+                    <Link className="dropdown-item" to={''} onClick={()=>handleFilter("All")}>
                       View All
                     </Link>
                   </li>

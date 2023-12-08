@@ -1,59 +1,56 @@
-import React from 'react'
-import Navbar from '../components/NavbarWhite';
-import HomeCampaignsCards from '../components/HomeCampaignsCards.jsx';
+import React from "react";
+import Navbar from "../components/NavbarWhite";
+import HomeCampaignsCards from "../components/HomeCampaignsCards.jsx";
 // import { Carousel } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const CampaignsPage = () => {
-
-  const [campaign, setcampaign]=useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [campaign, setcampaign] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-
-
-  const handleFilter=(category)=>{
-    setSelectedCategory(category)
+  const handleFilter = (category) => {
+    setSelectedCategory(category);
   };
 
-  useEffect(()=>{
-
-    const fetchcampaign=async()=>{
-      try{
-        const response = await axios.get(
-          "http://localhost:5000/campaigns/"
-        );
-    const data = response.data;
-    setcampaign(data)
-    console.log(data)
-      }
-      catch(error){
+  useEffect(() => {
+    const fetchcampaign = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/campaigns/");
+        const data = response.data;
+        setcampaign(data);
+        console.log(data);
+      } catch (error) {
         console.log(error);
-        setcampaign(null)
+        setcampaign(null);
       }
-    }
+    };
     fetchcampaign();
-    
-    
-    },[])
-
-  
+  }, []);
 
   return (
     <div className="w-100 vh-100">
-    <div className='campaign-request-card-home-container d-flex flow-row justify-content-center align-items-center gap-5'>
-    {campaign && campaign.filter((item) =>
-      (selectedCategory === "All" || item.category === selectedCategory) &&
-      item.isApproved
-    ).map((item, index) => (
- <HomeCampaignsCards className="home-campaigns-cards" key={index} data={item} />
-))}
-      
+      <Navbar handleFilter={handleFilter} />
+      <div className="campaign-request-card-home-container d-flex flow-row justify-content-center align-items-center gap-5">
+        {campaign &&
+          campaign
+            .filter(
+              (item) =>
+                (selectedCategory === "All" ||
+                  item.category === selectedCategory) &&
+                item.isApproved
+            )
+            .map((item, index) => (
+              <HomeCampaignsCards
+                className="home-campaigns-cards"
+                key={index}
+                data={item}
+              />
+            ))}
+      </div>
     </div>
-    
-    </div>
-  )
-}
+  );
+};
 
-export default CampaignsPage
+export default CampaignsPage;

@@ -20,7 +20,7 @@ const EditCampaignsDashboard = ({ onClose ,data}) => {
  e.preventDefault();
  try {
    const response = await axios.patch(
-     `http://localhost:5000/campaigns/${data.id}`,
+     `http://localhost:4000/campaigns/${data.id}`,
      campaign
    );
    console.log(response.data);
