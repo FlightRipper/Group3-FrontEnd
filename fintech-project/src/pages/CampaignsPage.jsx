@@ -40,7 +40,11 @@ const CampaignsPage = () => {
 
   return (
     <div className="w-100 vh-100">
-    <div className='campaign-request-card-home-container d-flex flow-row justify-content-center align-items-center gap-5'>
+    <div className='campaign-request-card-home-container d-flex flex-column flow-row justify-content-center align-items-center gap-5'>
+      <div className='w-50'>
+      <h1 className='text-info '>Top Campaigns</h1>
+      <h4 className='text-dark'>Have An OverView to Our Campaigns and Raise for what you care for</h4>
+      </div>
     {campaign && campaign.filter((item) =>
       (selectedCategory === "All" || item.category === selectedCategory) &&
       item.isApproved

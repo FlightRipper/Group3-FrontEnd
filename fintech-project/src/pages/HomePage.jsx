@@ -5,6 +5,7 @@ import i22 from './27.png';
 import './custom.scss';
 import HowItWorksPage from './HowItWorksPage';
 import axios from 'axios';
+import CampaignsPage from './CampaignsPage'
 
 
 const home = () => {
@@ -72,6 +73,7 @@ const home = () => {
           <h3>Raise and donate funds for what you care about</h3>
         </div>
       </div>
+      <CampaignsPage />
       <HowItWorksPage/>
     </div>
   );
