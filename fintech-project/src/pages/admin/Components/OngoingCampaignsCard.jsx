@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import EditCampaignsDashboard from './EditCampaignsDashboard.jsx';
 import axios from 'axios';
+import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
 
 const OngoingCampaignsCard = ({ data }) => {
+  const { user } = useAuthContext();
   const [showPopup, setShowPopup] = useState(false);
 
   const handleEdit = async () => {
@@ -12,7 +14,12 @@ const OngoingCampaignsCard = ({ data }) => {
   const ondelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/campaigns/${data.id}`
+        `http://localhost:5000/campaigns/${data.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);

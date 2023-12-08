@@ -1,13 +1,19 @@
 import React from 'react';
 import axios from 'axios';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const GiveBalanceData = ({ data, index }) => {
+  const { user } = useAuthContext()
   const handleCharge = async (e) => {
     e.preventDefault();
     const amount = e.target.elements.amount.value
 
     try {
-      const response = await axios.patch(`http://localhost:5000/admins/balance/user/${data.id}` ,amount);
+      const response = await axios.patch(`http://localhost:5000/admins/balance/user/${data.id}` ,amount, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        },
+      });
         console.log(response);
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);

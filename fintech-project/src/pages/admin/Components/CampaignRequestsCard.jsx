@@ -1,6 +1,7 @@
 import React from 'react';
 import '../AdminDashboard.css';
 import axios from 'axios';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const CampaignRequestsCard = ({ data }) => {
   const onApprove = async () => {
@@ -9,6 +10,11 @@ const CampaignRequestsCard = ({ data }) => {
         `http://localhost:5000/campaigns/${data.id}`,
         {
           isApproved: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
         }
       );
       if (response.status !== 200) {

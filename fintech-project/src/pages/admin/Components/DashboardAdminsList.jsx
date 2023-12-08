@@ -4,14 +4,21 @@ import '../AdminDashboard.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+
 
 const DashboardAdminsList = () => {
+  const { user } = useAuthContext();
   const [admin, setadmin] = useState();
 
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/admins/');
+        const response = await axios.get('http://localhost:5000/admins/', {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          },
+        });
         const data = response.data;
         setadmin(data);
         console.log(data);

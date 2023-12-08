@@ -3,20 +3,27 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import UsersTableData from './UsersTableData.jsx';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+
 const DashboardUsersList = () => {
-  const [user, setuser] = useState();
+  const { user } = useAuthContext()
+  const [users, setusers] = useState();
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users/');
+        const response = await axios.get('http://localhost:5000/users/', {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          },
+        });
         const data = response.data;
-        setuser(data);
+        setusers(data);
         console.log(data);
       } catch (error) {
         console.log(error);
-        setuser(null);
+        setusers(null);
       }
     };
     fetchUser();
@@ -59,8 +66,8 @@ const DashboardUsersList = () => {
               </tr>
             </thead>
 
-            {user &&
-              user
+            {users &&
+              users
                 .filter(
                   (item) =>
                     searchTerm === '' ||

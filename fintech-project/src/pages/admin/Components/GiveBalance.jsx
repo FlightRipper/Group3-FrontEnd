@@ -4,14 +4,23 @@ import '../AdminDashboard.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuthContext } from '../../../hooks/useAuthContext';
+// import axiosInstance from '../../../hooks/axiosInstance';
+
 
 const GiveBalance = () => {
   const [users, setUsers] = useState();
+  const { user } = useAuthContext()
 
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users');
+        const response = await axios.get('http://localhost:5000/users', {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          },
+        });
+
         const data = response.data;
         setUsers(data);
         console.log(data);
@@ -20,15 +29,6 @@ const GiveBalance = () => {
         setUsers(null);
       }
     };
-    axios.interceptors.request.use(
-      config => {
-        console.log(config.headers);
-        return config;
-      },
-      error => {
-        return Promise.reject(error);
-      }
-     );
     fetchAdmin();
   }, []);
 

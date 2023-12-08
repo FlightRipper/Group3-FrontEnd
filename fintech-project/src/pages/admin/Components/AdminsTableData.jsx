@@ -1,11 +1,19 @@
 import React from 'react';
 import axios from 'axios';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const AdminsTableData = ({ data, index }) => {
+  const { user } = useAuthContext();
+
   const ondelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/admins/${data.id}`
+        `http://localhost:5000/admins/${data.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
