@@ -9,7 +9,8 @@ export default function CampaignRequestsCard({data}) {
      const response = await axios.patch(`http://localhost:5000/campaigns/${data.id}`, {
        isApproved: true,
      });
-     if (response.status !== 200) {
+     const adminResponse= await axios.patch(`http://localhost:5000/admins/approve/admin/${data.Admin.id}/campaign/${data.id}`)
+     if (response.status !== 200 ) {
        throw new Error(`HTTP error! status: ${response.status}`);
      }
      // Handle success case here

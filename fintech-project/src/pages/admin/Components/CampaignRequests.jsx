@@ -60,17 +60,7 @@ const handleFilter=(category)=>{
         </div>
         <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
        
-        {/* {campaign &&
-  campaign
-    .filter((item) =>
-      (selectedCategory === "All" || item.category === selectedCategory) &&
-      item.isApproved &&
-      (searchTerm === "" ||
-        (item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())))
-    )
-    .map((item, index) => (
-      <OngoingCampaignsCard key={index} data={item} /> */}
-    {/* ))} */}
+       
 
         {campaign && campaign.filter((item) =>
       (selectedCategory === "All" || item.category === selectedCategory) &&

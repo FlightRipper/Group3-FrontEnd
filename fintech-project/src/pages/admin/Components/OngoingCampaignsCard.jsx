@@ -42,7 +42,7 @@ const OngoingCampaignsCard = ({data}) => {
      <p className='px-3 py-1 campaign-description text-center'> {data.description}</p>
      <div className='fixed-campaign-data mt-auto mb-4'>
      <p className='campaign-target text-center'>Target Amount: $ <span>{data.targetAmount}</span></p>
-     <p className='campaign-owner text-center'>Created by: <span>{data.username}</span></p>
+     <p className='campaign-owner text-center'>Created by: <span>{data.User.username}</span></p>
      <div className='approve-reject-buttons d-flex flex-row align-items-center justify-content-between px-2'>
       <button type="button" className="btn btn-primary approve-button px-5" onClick={handleEdit}>edit</button>
       <button type="button" className="btn btn-primary reject-button px-5" onClick={ondelete}>delete</button>
