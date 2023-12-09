@@ -29,7 +29,11 @@ const CampaignRequestsCard = ({ data }) => {
   const onReject = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/campaigns/${data.id}`
+        `http://localhost:5000/campaigns/${data.id}`,{
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);

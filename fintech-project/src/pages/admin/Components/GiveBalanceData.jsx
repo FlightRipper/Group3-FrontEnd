@@ -1,20 +1,22 @@
 import React from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useState } from 'react';
 
 const GiveBalanceData = ({ data, index }) => {
   const { user } = useAuthContext()
+  const [balance, setbalance] = useState(0)
   const handleCharge = async (e) => {
     e.preventDefault();
-    const amount = e.target.elements.amount.value
 
     try {
-      const response = await axios.patch(`http://localhost:5000/admins/balance/user/${data.id}` ,amount, {
+      const response = await axios.patch(`http://localhost:5000/admins/balance/user/${data.id}` ,{ balance: parseFloat(balance) }, {
         headers: {
           Authorization: `Bearer ${user.token}`
         },
       });
         console.log(response);
+        console.log(data.id);
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -32,7 +34,7 @@ const GiveBalanceData = ({ data, index }) => {
         <td className="admin-email-dashboard">{data.email}</td>
         <td className="admin-action-dashboard">
           <form onSubmit={handleCharge} className='d-flex gap-3'>
-          <input className='text-white bg-dark' type="text" id='amount' placeholder='Insert The Amount you Want to Charge'/>
+          <input className='text-white bg-dark' type="number" onChange={(e) => setbalance(e.target.value)} placeholder='Insert The balance you Want to Charge'/>
           <button className='btn-primary w-25' type='submit'> Charge</button>
           </form>
         </td>

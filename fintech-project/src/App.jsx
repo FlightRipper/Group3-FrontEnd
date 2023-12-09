@@ -7,11 +7,11 @@ import HomePage from './pages/HomePage';
 import AdminSignIn from './pages/admin/AdminSignIn';
 import AdminDashboard from './pages/admin/AdminDashboard.jsx';
 import HowItWorksPage from './pages/HowItWorksPage';
-import DonationPage from './pages/DonationPage';
 import Navbar from './components/Navbar.jsx';
 import { useState, useEffect } from 'react';
 import SpinnerLoading from './components/SpinnerLoading.jsx';
 import CampaignsPage from './pages/CampaignsPage.jsx';
+import DonationPage from './pages/DonationPage';
 
 
 const Layout = () => {
@@ -51,6 +51,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/donation" element={<DonationPage />} />
         </Route>
         <Route path="/howitworks" element={<HowItWorksPage />} />
         <Route path="/campaigns" element={<CampaignsPage />} />
