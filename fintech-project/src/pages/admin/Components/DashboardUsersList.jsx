@@ -4,13 +4,16 @@ import UsersTableData from './UsersTableData.jsx';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
 const DashboardUsersList = () => {
   const { user } = useAuthContext()
   const [users, setusers] = useState();
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const fetchUser = async () => {
       try {
         const response = await axios.get('http://localhost:5000/users/', {
@@ -21,9 +24,11 @@ const DashboardUsersList = () => {
         const data = response.data;
         setusers(data);
         console.log(data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
         setusers(null);
+        setLoading(false)
       }
     };
     fetchUser();
@@ -54,6 +59,7 @@ const DashboardUsersList = () => {
           />
         </div>
         <div className="body-content w-100 p-0">
+          {loading ? <SpinnerLoadingSmalle /> : (
           <table className="table table-dark mt-3">
             <thead>
               <tr>
@@ -80,6 +86,7 @@ const DashboardUsersList = () => {
                   <UsersTableData key={index} data={item} index={index} />
                 ))}
           </table>
+          )}
         </div>
       </div>
     </div>

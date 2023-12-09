@@ -5,14 +5,17 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
-// import axiosInstance from '../../../hooks/axiosInstance';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
+
 
 
 const GiveBalance = () => {
   const [users, setUsers] = useState();
   const { user } = useAuthContext()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const fetchAdmin = async () => {
       try {
         const response = await axios.get('http://localhost:5000/users', {
@@ -24,9 +27,11 @@ const GiveBalance = () => {
         const data = response.data;
         setUsers(data);
         console.log(data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
         setUsers(null);
+        setLoading(false)
       }
     };
     fetchAdmin();
@@ -55,6 +60,7 @@ const GiveBalance = () => {
           </div>
         </div>
         <div className="body-content w-100 p-0">
+          {loading ? <SpinnerLoadingSmalle /> : (
           <table className="table table-dark mt-3">
             <thead>
               <tr>
@@ -70,6 +76,7 @@ const GiveBalance = () => {
                 <GiveBalanceData key={index} data={item} index={index} />
               ))}
           </table>
+          )}
         </div>
       </div>
     </div>

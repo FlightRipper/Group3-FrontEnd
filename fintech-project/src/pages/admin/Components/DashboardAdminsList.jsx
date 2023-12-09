@@ -4,16 +4,19 @@ import '../AdminDashboard.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
 const DashboardAdminsList = () => {
   const { user } = useAuthContext();
   const [admin, setadmin] = useState();
   const [searchTerm, setSearchTerm]= useState("");
+  const [loading , setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const fetchAdmin = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/admins/', {
+        const response = await axios.get('http://localhost:5000/admins/', {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
@@ -21,9 +24,11 @@ const DashboardAdminsList = () => {
         const data = response.data;
         setadmin(data);
         console.log(data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
         setadmin(null);
+        setLoading(false)
       }
     };
     fetchAdmin();
@@ -55,6 +60,7 @@ const DashboardAdminsList = () => {
           </div>
         </div>
         <div className="body-content w-100 p-0">
+          {loading ? <SpinnerLoadingSmalle /> : (
           <table className="table table-dark mt-3">
             <thead>
               <tr>
@@ -64,7 +70,6 @@ const DashboardAdminsList = () => {
                 <th scope="col">Action</th>
               </tr>
             </thead>
-
             {admin &&
               admin
               .filter((item)=>
@@ -76,6 +81,7 @@ const DashboardAdminsList = () => {
                 <AdminsTableData key={index} data={item} index={index} onDelete={handleDelete}/>
               ))}
           </table>
+          )}
         </div>
       </div>
     </div>

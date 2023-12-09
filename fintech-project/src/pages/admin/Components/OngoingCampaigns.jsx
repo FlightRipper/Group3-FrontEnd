@@ -4,22 +4,27 @@ import React from 'react';
 import OngoingCampaignsCard from './OngoingCampaignsCard.jsx';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
 const OngoingCampaigns = () => {
   const [campaign, setcampaign] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true)
     const fetchcampaign = async () => {
       try {
         const response = await axios.get('http://localhost:5000/campaigns/');
         const data = response.data;
         setcampaign(data);
         console.log(data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
         setcampaign(null);
+        setLoading(false)
       }
     };
     fetchcampaign();
@@ -64,6 +69,7 @@ const OngoingCampaigns = () => {
             />
           </div>
         </div>
+        {loading ? <SpinnerLoadingSmalle /> : (
         <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
           {campaign &&
             campaign
@@ -82,6 +88,7 @@ const OngoingCampaigns = () => {
                 <OngoingCampaignsCard key={index} data={item} />
               ))}
         </div>
+        )}
       </div>
     </div>
   );

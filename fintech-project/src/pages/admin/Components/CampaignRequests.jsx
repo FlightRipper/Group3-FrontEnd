@@ -3,23 +3,28 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import CampaignRequestsCard from './CampaignRequestsCard.jsx';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle';
 
 const CampaignRequests = () => {
   const [campaign, setcampaign] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false)
   console.log(selectedCategory);
 
   useEffect(() => {
     const fetchcampaign = async () => {
+      setLoading(true)
       try {
         const response = await axios.get('http://localhost:5000/campaigns/');
         const data = response.data;
         setcampaign(data);
         console.log(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setcampaign(null);
+        setLoading(false)
       }
     };
     fetchcampaign();
@@ -61,6 +66,7 @@ const CampaignRequests = () => {
             />
           </div>
         </div>
+        {loading ? <SpinnerLoadingSmalle /> : (
         <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
           {campaign &&
             campaign
@@ -79,6 +85,7 @@ const CampaignRequests = () => {
                 <CampaignRequestsCard key={index} data={item} />
               ))}
         </div>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import { useState } from 'react';
+
 
 const AdminsTableData = ({ data, index }) => {
   const { user } = useAuthContext();
