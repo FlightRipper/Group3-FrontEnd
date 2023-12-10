@@ -38,7 +38,21 @@ useEffect(()=>{
   },[])
 
 
+  // const handleDataChanges = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:5001/admins/');
+  //     const data = response.data;
+  //     setadmin(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setadmin(null);
+  //   }
+  // };
 
+  const handleDelete = async (deletedadminId) => {
+    // Update the Admin state after deletion
+    setadmin((prevadmin) => prevadmin.filter((admin) => admin.id !== deletedadminId));
+  };
 
 
     return (
@@ -77,7 +91,7 @@ useEffect(()=>{
                 </thead>
                 
                 {admin && admin.map((item,index)=>(
-<AdminsTableData key={index}  data={item}   index={index}   />
+<AdminsTableData key={index}  data={item}   index={index}  onDelete={handleDelete} />
 
             ))}
 

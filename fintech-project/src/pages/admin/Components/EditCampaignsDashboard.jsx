@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./CampaignEditForm.css"
+import logo from "../../admin/10.png"
 const EditCampaignsDashboard = ({ onClose ,data}) => {
  const [campaign, setCampaign] = useState({
  category: "",
@@ -26,13 +28,14 @@ const EditCampaignsDashboard = ({ onClose ,data}) => {
    console.log(response.data);
    onClose();
  } catch (error) {
-   console.error(error);
+   console.log(error);
  }
  };
 
  return (
- <div>
-   <form onSubmit={handleUpdate}>
+ <div className='Whole-campaign-edit-form'>
+  <img src={logo} />
+   <form onSubmit={handleUpdate} className='Campaign-Edit-Form'>
      <div className="form-group">
        <label htmlFor="category">Campaign Category:</label>
        <input
@@ -74,8 +77,9 @@ const EditCampaignsDashboard = ({ onClose ,data}) => {
        />
      </div>
      <button type="submit" className="btn btn-primary">Submit</button>
+     <button type="button" onClick={onClose}>Close</button>
    </form>
-   <button type="button" onClick={onClose}>Close</button>
+
  </div>
  );
 }

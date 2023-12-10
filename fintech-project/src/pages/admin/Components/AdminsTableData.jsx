@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-const AdminsTableData = ({data,index}) => {
+const AdminsTableData = ({data,index,onDelete}) => {
 
   const ondelete = async () => {
     try {
@@ -9,9 +9,11 @@ const AdminsTableData = ({data,index}) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       // Handle success case here
+      onDelete(data.id);
     } catch (error) {
       console.error('There was an error!', error);
     }
+    
    };
 
   return (

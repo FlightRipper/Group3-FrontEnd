@@ -37,6 +37,10 @@ const handleFilter=(category)=>{
   setSelectedCategory(category)
 };
 
+const handleDelete = async (deletedcampaignId) => {
+  // Update the Admin state after deletion
+  setcampaign((prevcampaign) => prevcampaign.filter((campaign) => campaign.id !== deletedcampaignId));
+};
 
 
 
@@ -74,7 +78,7 @@ const handleFilter=(category)=>{
         (item.title && item.title.toLowerCase().includes(searchTerm.toLowerCase())))
     )
     .map((item, index) => (
-      <CampaignOngoingCard key={index} data={item} />
+      <CampaignOngoingCard key={index} data={item} onDelete={handleDelete}/>
     ))}
 
 

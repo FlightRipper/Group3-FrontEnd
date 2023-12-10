@@ -1,0 +1,32 @@
+.Whole-campaign-edit-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.Campaign-Edit-Form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.form-group{
+    margin-top: 15px;
+}
+
+
+.Campaign-Edit-Form label{
+    padding-right:50px;
+    font-weight: bold;
+}
+
+
+.Campaign-Edit-Form button{
+    width: 200px;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import EditCampaignsDashboard from './EditCampaignsDashboard.jsx';
 import axios from 'axios';
 
-const CampaignOngoingCard = ({data}) => {
+const CampaignOngoingCard = ({data,onDelete}) => {
  const [showPopup, setShowPopup] = useState(false);
 
  const handleEdit = async () => {
@@ -15,6 +15,7 @@ const CampaignOngoingCard = ({data}) => {
     if (response.status !== 200) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+    onDelete(data.id);
     // Handle success case here
   } catch (error) {
     console.error('There was an error!', error);
