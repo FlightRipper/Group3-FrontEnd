@@ -3,7 +3,34 @@ import { Chart } from 'chart.js/auto';
 import '../AdminDashboard.css';
 
 const DonutChartCampaigns = () => {
+
   const chartRef = useRef(null);
+  const [campaign, setcampaign]=useState(null);
+
+
+
+  useEffect(()=>{
+
+    const fetchcampaign=async()=>{
+      try{
+        const response = await axios.get(
+          "http://localhost:5000/campaigns/"
+        );
+    const campaignData = response.data;
+    setcampaign(campaignData)
+    console.log(campaignData)
+      }
+      catch(error){
+        console.log(error);
+        setcampaign(null)
+      }
+    }
+    fetchcampaign();
+    
+    
+    },[])
+
+
 
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');

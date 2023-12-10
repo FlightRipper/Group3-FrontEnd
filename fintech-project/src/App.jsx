@@ -15,9 +15,10 @@ import CampaignsPage from './pages/CampaignsPage.jsx'
 
 
 const Layout = () => {
+
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <Outlet />
     </>
   );
@@ -26,7 +27,7 @@ const Layout = () => {
 function App() {
   const { user } = useAuthContext();
   const [loading, setLoading] = useState(true);
-
+-
   // we used useState here because if we use the user in the routes without reserving the promise it will get a null reading so thats why i used the use effect
   // to solve this resolve the promise and got a good reading of the object
   useEffect(() => {
@@ -42,6 +43,8 @@ function App() {
     fetchData();
   }, []);
 
+  
+
   if (loading) {
     return <SpinnerLoading />;
   }
@@ -52,7 +55,7 @@ function App() {
         <Route path='/donation' element={<DonationPage/>}/>
 
         <Route path='/' element={<Layout />}>
-        <Route path='/campaigns' element={<CampaignsPage/>}/>
+        <Route path="/campaigns" element={<CampaignsPage/>}/>
         <Route path="/" element={<HomePage />} />
         </Route>
         <Route path="/howitworks" element={<HowItWorksPage />} />

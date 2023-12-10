@@ -7,7 +7,7 @@ import { useLogOut } from '../hooks/useLogOut';
 import NotificationIcon from './NotificationIcon'
 
 
-const Navbar = ({handleFilter}) => {
+const Navbar = ({ handleFilter}) => {
   const { logout } = useLogOut();
   const { user } = useAuthContext();
 
