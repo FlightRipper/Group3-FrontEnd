@@ -4,10 +4,8 @@ import './DonationPage.css';
 import { useLocation } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import jwt_decode from 'jwt-decode';
-import unchr from './UNHCR.png'
-import TimeSpan from './Time_Span.png'
-
-
+import unchr from './UNHCR.png';
+import TimeSpan from './Time_Span.png';
 
 const DonationPage = () => {
   const { user } = useAuthContext();
@@ -16,7 +14,7 @@ const DonationPage = () => {
   const token = user.token; // Get the token from the user object
   const decodedToken = jwt_decode(token);
   const [amount, setAmount] = useState('');
-  const [messages, setmessages] = useState('')
+  const [messages, setmessages] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +22,7 @@ const DonationPage = () => {
     try {
       const response = await axios.post(
         `http://localhost:5000/donations/campaign/${data.id}/user/${decodedToken.id}`,
-         {amount} ,
+        { amount },
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -33,7 +31,7 @@ const DonationPage = () => {
       );
 
       if (amount > user.balance) {
-        setmessages('You Don\'t Have Enough Balance');
+        setmessages("You Don't Have Enough Balance");
       } else if (response.status === 201) {
         setmessages('Your Donation was sent successfully');
       } else {
@@ -42,7 +40,7 @@ const DonationPage = () => {
       console.log(response);
     } catch (error) {
       console.log(error);
-      setmessages('An error occurred')
+      setmessages('An error occurred');
     }
   };
 
@@ -94,15 +92,18 @@ const DonationPage = () => {
               ></input>
             </div>
           </div>
-          <button
-            className="sh7ade-page-SubmitButton"
-            type="submit"
-          >
+          <button className="sh7ade-page-SubmitButton" type="submit">
             Submit Donation
           </button>
-          <div className={messages === 'Your Donation was sent successfully' ? 'text-success' : 'text-danger'}>
- {messages}
-</div>
+          <div
+            className={
+              messages === 'Your Donation was sent successfully'
+                ? 'text-success'
+                : 'text-danger'
+            }
+          >
+            {messages}
+          </div>
         </div>
       </form>
     </>

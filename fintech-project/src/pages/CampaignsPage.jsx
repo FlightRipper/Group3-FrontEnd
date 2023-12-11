@@ -9,12 +9,11 @@ import './custom.scss'; // Import the custom CSS file
 
 const CampaignsPage = () => {
   const [campaign, setCampaign] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
   const isMediumScreen = useMediaQuery({ maxWidth: 1250 }); // Adjust the breakpoint as needed
   const isSmallScreen = useMediaQuery({ maxWidth: 567 }); // Adjust the breakpoint as needed
-
 
   const handleFilter = (category) => {
     setSelectedCategory(category);
@@ -24,7 +23,7 @@ const CampaignsPage = () => {
     setLoading(true);
     const fetchCampaign = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/campaigns/");
+        const response = await axios.get('http://localhost:5000/campaigns/');
         const data = response.data;
         setCampaign(data);
         console.log(data);
@@ -60,12 +59,15 @@ const CampaignsPage = () => {
                 {campaign
                   .filter(
                     (item) =>
-                      (selectedCategory === "All" ||
+                      (selectedCategory === 'All' ||
                         item.category === selectedCategory) &&
                       item.isApproved
                   )
                   .reduce((acc, item, index) => {
-                    if (index % (isSmallScreen ?  1 : isMediumScreen ? 2 : 3) === 0) {
+                    if (
+                      index % (isSmallScreen ? 1 : isMediumScreen ? 2 : 3) ===
+                      0
+                    ) {
                       acc.push([]);
                     }
                     acc[acc.length - 1].push(item);

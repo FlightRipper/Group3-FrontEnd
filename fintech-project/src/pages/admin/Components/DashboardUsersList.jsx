@@ -7,56 +7,40 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
 
 const DashboardUsersList = () => {
-  const { user } = useAuthContext()
+  const { user } = useAuthContext();
 
-const [users,setusers]=useState()
-const [searchTerm, setSearchTerm] = useState("");
-const [selectedUserType, setSelectedUserType] = useState("All");
+  const [users, setusers] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedUserType, setSelectedUserType] = useState('All');
 
-const handleFilter=(userType)=>{
-  setSelectedUserType(userType);
- };
-
-
-
-useEffect(()=>{
-
-  const fetchUser=async()=>{
-    try{
-      const response = await axios.get(
-        "http://localhost:5000/users/",{
-          headers: {
-            Authorization: `Bearer ${user.token}`
-          }
-        }
-      );
-  const data = response.data;
-  setusers(data)
-  console.log(data)
-    }
-    catch(error){
-      console.log(error);
-      setusers(null)
-    }
-  }
-  fetchUser();
-  },[])
-
-
-  const handleDataChanges = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/users/');
-      const data = response.data;
-      setusers(data);
-    } catch (error) {
-      console.log(error);
-      setusers(null);
-    }
+  const handleFilter = (userType) => {
+    setSelectedUserType(userType);
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/users/', {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        const data = response.data;
+        setusers(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        setusers(null);
+      }
+    };
+    fetchUser();
+  }, []);
 
   const handleDelete = async (deletedUserId) => {
     // Update the user state after deletion
-    setusers((prevUser) => prevUser.filter((user) => user.id !== deletedUserId));
+    setusers((prevUser) =>
+      prevUser.filter((user) => user.id !== deletedUserId)
+    );
   };
 
   return (
@@ -67,15 +51,14 @@ useEffect(()=>{
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Filter By
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => handleFilter("donor")}>
+              <Dropdown.Item onClick={() => handleFilter('donor')}>
                 User Role: Donor
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleFilter("projectOwner")}>
+              <Dropdown.Item onClick={() => handleFilter('projectOwner')}>
                 User Role: Owner
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleFilter("All")}>
+              <Dropdown.Item onClick={() => handleFilter('All')}>
                 View All
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -102,19 +85,26 @@ useEffect(()=>{
               </tr>
             </thead>
 
-{users &&
-  users
-  .filter((item) => (selectedUserType === "All" || item.userType === selectedUserType) &&
-  ((searchTerm === "" && item.username) ||
-    (item.username &&
-      item.username.toLowerCase().includes(searchTerm.toLowerCase())))
-)
-    .map((item, index) => (
-      <UsersTableData key={index} data={item} index={index} onDelete={handleDelete}/>
-    ))}
-
-
-
+            {users &&
+              users
+                .filter(
+                  (item) =>
+                    (selectedUserType === 'All' ||
+                      item.userType === selectedUserType) &&
+                    ((searchTerm === '' && item.username) ||
+                      (item.username &&
+                        item.username
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())))
+                )
+                .map((item, index) => (
+                  <UsersTableData
+                    key={index}
+                    data={item}
+                    index={index}
+                    onDelete={handleDelete}
+                  />
+                ))}
           </table>
         </div>
       </div>

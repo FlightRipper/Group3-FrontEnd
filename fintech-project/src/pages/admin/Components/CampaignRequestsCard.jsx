@@ -3,9 +3,8 @@ import '../AdminDashboard.css';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 
-
 const CampaignRequestsCard = ({ data }) => {
-  const { user } = useAuthContext()
+  const { user } = useAuthContext();
   const onApprove = async () => {
     try {
       const response = await axios.patch(
@@ -31,7 +30,8 @@ const CampaignRequestsCard = ({ data }) => {
   const onReject = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/campaigns/${data.id}`,{
+        `http://localhost:5000/campaigns/${data.id}`,
+        {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

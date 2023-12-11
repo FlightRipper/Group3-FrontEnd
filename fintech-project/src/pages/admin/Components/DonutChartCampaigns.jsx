@@ -1,4 +1,4 @@
-import React, { useEffect, useRef , useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import '../AdminDashboard.css';
 import axios from 'axios';
@@ -10,7 +10,9 @@ const DonutChartCampaigns = () => {
   useEffect(() => {
     const fetchCategoryStatistics = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/campaigns/category-statistics");
+        const response = await axios.get(
+          'http://localhost:5000/campaigns/category-statistics'
+        );
         const categoryData = response.data;
         setCategories(categoryData);
       } catch (error) {
@@ -22,23 +24,29 @@ const DonutChartCampaigns = () => {
     fetchCategoryStatistics();
   }, []);
 
-
   useEffect(() => {
     if (categories.length === 0) {
       return;
     }
     const ctx = chartRef.current.getContext('2d');
-      // Extract labels and data from the fetched categories
-      const labels = categories.map((category) => category.category.charAt(0).toUpperCase() + category.category.slice(1));      const totalCount = categories.reduce((acc, category) => acc + category.count, 0);
-      const percentages = categories.map((category) => ((category.count / totalCount) * 100).toFixed(2));
-      const percentageWithSymbol= percentages.map((percent)=>`${percent}%`)
-      console.log(percentageWithSymbol)
-  
-  
+    // Extract labels and data from the fetched categories
+    const labels = categories.map(
+      (category) =>
+        category.category.charAt(0).toUpperCase() + category.category.slice(1)
+    );
+    const totalCount = categories.reduce(
+      (acc, category) => acc + category.count,
+      0
+    );
+    const percentages = categories.map((category) =>
+      ((category.count / totalCount) * 100).toFixed(2)
+    );
+    const percentageWithSymbol = percentages.map((percent) => `${percent}%`);
+    console.log(percentageWithSymbol);
 
     // Chart data
     const chartData = {
-      labels:labels,
+      labels: labels,
       datasets: [
         {
           data: percentages,
@@ -53,7 +61,8 @@ const DonutChartCampaigns = () => {
       cutoutPercentage: 70,
       plugins: {
         tooltip: {
-          callbacks: {label: data => `${data.formattedValue}%` }},
+          callbacks: { label: (data) => `${data.formattedValue}%` },
+        },
         legend: {
           labels: {
             color: 'white',
@@ -69,8 +78,6 @@ const DonutChartCampaigns = () => {
           top: 20, // Adjust the bottom padding between legend and chart as needed
         },
       },
-
-      
     };
 
     // Create the donut chart

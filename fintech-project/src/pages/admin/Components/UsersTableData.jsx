@@ -3,14 +3,15 @@ import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const UsersTableData = ({ data, index, onDelete }) => {
-  const {user}= useAuthContext()
+  const { user } = useAuthContext();
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/users/${data.id}`,{
+        `http://localhost:5000/users/${data.id}`,
+        {
           headers: {
-            Authorization: `Bearer ${user.token}`
-          }
+            Authorization: `Bearer ${user.token}`,
+          },
         }
       );
       if (response.status !== 200) {
@@ -26,12 +27,12 @@ const UsersTableData = ({ data, index, onDelete }) => {
   return (
     <tbody>
       <tr>
-        <td className='user-id-dashboard'>{index + 1}</td>
-        <td className='user-username-dashboard'>{data.username}</td>
-        <td className='user-email-dashboard'>{data.email}</td>
-        <td className='user-balance-dashboard'>{data.balance}</td>
-        <td className='user-usertype-dashboard'>{data.userType}</td>
-        <td className='user-action-dashboard'>
+        <td className="user-id-dashboard">{index + 1}</td>
+        <td className="user-username-dashboard">{data.username}</td>
+        <td className="user-email-dashboard">{data.email}</td>
+        <td className="user-balance-dashboard">{data.balance}</td>
+        <td className="user-usertype-dashboard">{data.userType}</td>
+        <td className="user-action-dashboard">
           <i className="bi bi-trash" onClick={handleDelete}></i>
         </td>
       </tr>

@@ -1,5 +1,5 @@
 import React from 'react';
-import GiveBalanceData from './GiveBalanceData'
+import GiveBalanceData from './GiveBalanceData';
 import '../AdminDashboard.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useEffect, useState } from 'react';
@@ -7,31 +7,29 @@ import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
-
-
 const GiveBalance = () => {
   const [users, setUsers] = useState();
-  const { user } = useAuthContext()
-  const [loading, setLoading] = useState(false)
+  const { user } = useAuthContext();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchAdmin = async () => {
       try {
         const response = await axios.get('http://localhost:5000/users', {
           headers: {
-            Authorization: `Bearer ${user.token}`
+            Authorization: `Bearer ${user.token}`,
           },
         });
 
         const data = response.data;
         setUsers(data);
         console.log(data);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setUsers(null);
-        setLoading(false)
+        setLoading(false);
       }
     };
     fetchAdmin();
@@ -60,22 +58,24 @@ const GiveBalance = () => {
           </div>
         </div>
         <div className="body-content w-100 p-0">
-          {loading ? <SpinnerLoadingSmalle /> : (
-          <table className="table table-dark mt-3">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Charging amount</th>
-              </tr>
-            </thead>
+          {loading ? (
+            <SpinnerLoadingSmalle />
+          ) : (
+            <table className="table table-dark mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Charging amount</th>
+                </tr>
+              </thead>
 
-            {users &&
-              users.map((item, index) => (
-                <GiveBalanceData key={index} data={item} index={index} />
-              ))}
-          </table>
+              {users &&
+                users.map((item, index) => (
+                  <GiveBalanceData key={index} data={item} index={index} />
+                ))}
+            </table>
           )}
         </div>
       </div>

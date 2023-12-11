@@ -1,5 +1,11 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext.jsx';
 import SigninPage from './pages/SignInPage';
 import RegisterPage from './pages/RegisterPage';
@@ -14,7 +20,6 @@ import CampaignsPage from './pages/CampaignsPage.jsx';
 import DonationPage from './pages/DonationPage';
 import Footer from './components/Footer.jsx';
 
-
 const Layout = () => {
   return (
     <>
@@ -23,7 +28,7 @@ const Layout = () => {
       <Footer />
     </>
   );
- };
+};
 
 function App() {
   const { user } = useAuthContext();
@@ -51,13 +56,19 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/donation" element={user ? <DonationPage /> : <Navigate to={'/'} />} />
-        <Route path="/howitworks" element={<HowItWorksPage />} />
-        <Route path="/campaigns" element={<CampaignsPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/donation"
+            element={user ? <DonationPage /> : <Navigate to={'/'} />}
+          />
+          <Route path="/howitworks" element={<HowItWorksPage />} />
+          <Route path="/campaigns" element={<CampaignsPage />} />
         </Route>
-        <Route path="/admin" element={!user ? <AdminSignIn /> : <Navigate to={'/'} />} />
+        <Route
+          path="/admin"
+          element={!user ? <AdminSignIn /> : <Navigate to={'/'} />}
+        />
         <Route
           path="/admin/home"
           element={

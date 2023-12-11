@@ -13,18 +13,18 @@ const OngoingCampaigns = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchcampaign = async () => {
       try {
         const response = await axios.get('http://localhost:5000/campaigns/');
         const data = response.data;
         setcampaign(data);
         console.log(data);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setcampaign(null);
-        setLoading(false)
+        setLoading(false);
       }
     };
     fetchcampaign();
@@ -69,25 +69,27 @@ const OngoingCampaigns = () => {
             />
           </div>
         </div>
-        {loading ? <SpinnerLoadingSmalle /> : (
-        <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
-          {campaign &&
-            campaign
-              .filter(
-                (item) =>
-                  (selectedCategory === 'All' ||
-                    item.category === selectedCategory) &&
-                  item.isApproved &&
-                  (searchTerm === '' ||
-                    (item.title &&
-                      item.title
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())))
-              )
-              .map((item, index) => (
-                <OngoingCampaignsCard key={index} data={item} />
-              ))}
-        </div>
+        {loading ? (
+          <SpinnerLoadingSmalle />
+        ) : (
+          <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
+            {campaign &&
+              campaign
+                .filter(
+                  (item) =>
+                    (selectedCategory === 'All' ||
+                      item.category === selectedCategory) &&
+                    item.isApproved &&
+                    (searchTerm === '' ||
+                      (item.title &&
+                        item.title
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())))
+                )
+                .map((item, index) => (
+                  <OngoingCampaignsCard key={index} data={item} />
+                ))}
+          </div>
         )}
       </div>
     </div>

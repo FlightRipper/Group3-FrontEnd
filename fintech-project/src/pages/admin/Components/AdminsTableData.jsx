@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import { useState } from 'react';
 
-
 const AdminsTableData = ({ data, index }) => {
   const { user } = useAuthContext();
 
@@ -25,19 +24,19 @@ const AdminsTableData = ({ data, index }) => {
       console.error('There was an error!', error);
     }
   };
-  
-    return (
-      <tbody>
-        <tr>
-          <td className="admin-id-dashboard">{index + 1}</td>
-          <td className="admin-username-dashboard">{data.username}</td>
-          <td className="admin-email-dashboard">{data.email}</td>
-          <td className="admin-action-dashboard">
-            <i className="bi bi-trash" onClick={ondelete}></i>
-          </td>
-        </tr>
-      </tbody>
-    );
-  };
-  
-  export default AdminsTableData;
+
+  return (
+    <tbody>
+      <tr>
+        <td className="admin-id-dashboard">{index + 1}</td>
+        <td className="admin-username-dashboard">{data.username}</td>
+        <td className="admin-email-dashboard">{data.email}</td>
+        <td className="admin-action-dashboard">
+          <i className="bi bi-trash" onClick={ondelete}></i>
+        </td>
+      </tr>
+    </tbody>
+  );
+};
+
+export default AdminsTableData;

@@ -1,5 +1,5 @@
-import react from "react";
-import "./custom.scss";
+import react from 'react';
+import './custom.scss';
 
 const HowItWorksPage = () => {
   return (
@@ -27,7 +27,7 @@ const HowItWorksPage = () => {
               <p>
                 Sign up confidently to explore a personalized experience. Your
                 security is our priority, with encrypted protection for your
-                data. Join our trusted community and enjoy exclusive benefits.{" "}
+                data. Join our trusted community and enjoy exclusive benefits.{' '}
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ const HowItWorksPage = () => {
                 collect few documentation to verify your identity and your
                 campaign details including title, picture, goal and description.
                 Once submitted, we will review your request fast and post your
-                campaign online in no-time!{" "}
+                campaign online in no-time!{' '}
               </p>
             </div>
           </div>
@@ -77,7 +77,7 @@ const HowItWorksPage = () => {
                 their corresponding currencies. Currencies are updated within 72
                 hours after a donation is made. You can also request to withdraw
                 the collected amount at any time if your goal is not reached
-                yet; however a small penalty fee will apply.{" "}
+                yet; however a small penalty fee will apply.{' '}
               </p>
             </div>
           </div>
@@ -107,7 +107,7 @@ const HowItWorksPage = () => {
               <p>
                 Sign up confidently to explore a personalized experience. Your
                 security is our priority, with encrypted protection for your
-                data. Join our trusted community and enjoy exclusive benefits.{" "}
+                data. Join our trusted community and enjoy exclusive benefits.{' '}
               </p>
             </div>
           </div>

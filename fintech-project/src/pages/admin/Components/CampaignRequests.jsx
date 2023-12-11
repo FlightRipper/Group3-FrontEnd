@@ -9,12 +9,12 @@ const CampaignRequests = () => {
   const [campaign, setcampaign] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   console.log(selectedCategory);
 
   useEffect(() => {
     const fetchcampaign = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
         const response = await axios.get('http://localhost:5000/campaigns/');
         const data = response.data;
@@ -24,7 +24,7 @@ const CampaignRequests = () => {
       } catch (error) {
         console.log(error);
         setcampaign(null);
-        setLoading(false)
+        setLoading(false);
       }
     };
     fetchcampaign();
@@ -66,25 +66,27 @@ const CampaignRequests = () => {
             />
           </div>
         </div>
-        {loading ? <SpinnerLoadingSmalle /> : (
-        <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
-          {campaign &&
-            campaign
-              .filter(
-                (item) =>
-                  (selectedCategory === 'All' ||
-                    item.category === selectedCategory) &&
-                  item.isApproved === false &&
-                  (searchTerm === '' ||
-                    (item.title &&
-                      item.title
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())))
-              )
-              .map((item, index) => (
-                <CampaignRequestsCard key={index} data={item} />
-              ))}
-        </div>
+        {loading ? (
+          <SpinnerLoadingSmalle />
+        ) : (
+          <div className="body-content w-100 p-0 d-flex flex-wrap row justify-content-around align-items-center">
+            {campaign &&
+              campaign
+                .filter(
+                  (item) =>
+                    (selectedCategory === 'All' ||
+                      item.category === selectedCategory) &&
+                    item.isApproved === false &&
+                    (searchTerm === '' ||
+                      (item.title &&
+                        item.title
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase())))
+                )
+                .map((item, index) => (
+                  <CampaignRequestsCard key={index} data={item} />
+                ))}
+          </div>
         )}
       </div>
     </div>
