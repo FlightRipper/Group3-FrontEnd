@@ -5,10 +5,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
 const DashboardUsersList = () => {
   const { user } = useAuthContext();
-
+  const [loading, setLoading] = useState(false)
   const [users, setusers] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedUserType, setSelectedUserType] = useState('All');
@@ -18,6 +19,7 @@ const DashboardUsersList = () => {
   };
 
   useEffect(() => {
+    setLoading(true)
     const fetchUser = async () => {
       try {
         const response = await axios.get('http://localhost:5000/users/', {
@@ -28,9 +30,11 @@ const DashboardUsersList = () => {
         const data = response.data;
         setusers(data);
         console.log(data);
+        setLoading(false)
       } catch (error) {
         console.log(error);
         setusers(null);
+        setLoading(false)
       }
     };
     fetchUser();
@@ -44,6 +48,8 @@ const DashboardUsersList = () => {
   };
 
   return (
+    <>
+    {loading ? <SpinnerLoadingSmalle /> : (
     <div className="w-100">
       <div className="dashboard-body w-100 h-100 d-flex row m-0 align-items-center justify-content-center">
         <div className="body-header w-100 d-flex align-items-center  justify-content-between column p-3 m-0 sticky-top">
@@ -109,6 +115,8 @@ const DashboardUsersList = () => {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };
 

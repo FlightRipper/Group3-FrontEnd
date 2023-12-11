@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../../custom.scss';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle';
+
 
 const EditCampaignsDashboard = ({ onClose, data }) => {
   const { user } = useAuthContext();
+  const [messages, setmessages] = useState('');
+  const [loading , setLoading] = useState(false);
+
 
   const [campaign, setCampaign] = useState({
     category: '',
@@ -12,7 +18,6 @@ const EditCampaignsDashboard = ({ onClose, data }) => {
     targetAmount: '',
   });
 
-  console.log(campaign);
 
   const handleChange = (e) => {
     setCampaign({
@@ -23,6 +28,7 @@ const EditCampaignsDashboard = ({ onClose, data }) => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.patch(
         `http://localhost:5000/campaigns/${data.id}`,
@@ -33,16 +39,23 @@ const EditCampaignsDashboard = ({ onClose, data }) => {
           },
         }
       );
+      setmessages('Your campaign has been edited successfully')
       console.log(response.data);
+      setLoading(false)
       onClose();
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      setmessages('An error has occurred while editing the campaign')
+      setLoading(false)
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleUpdate}>
+    <>
+    {loading ? <SpinnerLoadingSmalle /> : (
+    <div className="Whole-campaign-edit-form">
+      <h1 className='m-5 text-info'>Edit Campaign</h1>
+      <form onSubmit={handleUpdate} className="Campaign-Edit-Form d-flex align-items-baseline">
         <div className="form-group">
           <label htmlFor="category">Campaign Category:</label>
           <input
@@ -83,14 +96,27 @@ const EditCampaignsDashboard = ({ onClose, data }) => {
             onChange={handleChange}
           />
         </div>
+        <div
+            className={
+              messages === 'your campaign has been edited successfully'
+                ? 'text-success'
+                : 'text-danger'
+            }
+          >
+            {messages}
+          </div>
+        <div className='d-flex justify-content-center align-items-center m-5 gap-2'>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
+        <button className='btn btn-danger' type="button" onClick={onClose}>
+          Close
+        </button>
+        </div>
       </form>
-      <button type="button" onClick={onClose}>
-        Close
-      </button>
     </div>
+    )}
+    </>
   );
 };
 

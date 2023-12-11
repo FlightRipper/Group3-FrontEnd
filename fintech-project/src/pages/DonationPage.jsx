@@ -6,6 +6,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import jwt_decode from 'jwt-decode';
 import unchr from './UNHCR.png';
 import TimeSpan from './Time_Span.png';
+import SpinnerSmall from '../components/SpinnerLoadingSmalle'
 
 const DonationPage = () => {
   const { user } = useAuthContext();
@@ -15,10 +16,11 @@ const DonationPage = () => {
   const decodedToken = jwt_decode(token);
   const [amount, setAmount] = useState('');
   const [messages, setmessages] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       const response = await axios.post(
         `http://localhost:5000/donations/campaign/${data.id}/user/${decodedToken.id}`,
@@ -38,14 +40,17 @@ const DonationPage = () => {
         setmessages('An error occurred');
       }
       console.log(response);
+      setLoading(false)
     } catch (error) {
       console.log(error);
       setmessages('An error occurred');
+      setLoading(false)
     }
   };
 
   return (
     <>
+    {loading ? <SpinnerSmall /> : (
       <form className="sh7ade-page" onSubmit={handleSubmit}>
         <div className="sh7ade-page-LeftSide">
           <h1 className="sh7abe-page-LeftSide-Title">{data.title}</h1>
@@ -106,6 +111,7 @@ const DonationPage = () => {
           </div>
         </div>
       </form>
+      )}
     </>
   );
 };

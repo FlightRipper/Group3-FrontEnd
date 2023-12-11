@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Chart } from 'chart.js/auto';
 import '../AdminDashboard.css';
 import axios from 'axios';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle';
 
 const DonutChartCampaigns = () => {
   const chartRef = useRef(null);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     const fetchCategoryStatistics = async () => {
       try {
         const response = await axios.get(
@@ -15,9 +18,11 @@ const DonutChartCampaigns = () => {
         );
         const categoryData = response.data;
         setCategories(categoryData);
+        setLoading(false)
       } catch (error) {
         console.log(error);
         setCategories([]);
+        setLoading(false)
       }
     };
 
@@ -93,6 +98,8 @@ const DonutChartCampaigns = () => {
     };
   }, [categories]);
   return (
+    <>
+    {loading ? <SpinnerLoadingSmalle /> : (
     <div className="donut-chart m-5">
       <canvas
         className="donut"
@@ -101,6 +108,8 @@ const DonutChartCampaigns = () => {
         height="350"
       ></canvas>
     </div>
+    )}
+    </>
   );
 };
 

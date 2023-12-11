@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import EditCampaignsDashboard from './EditCampaignsDashboard.jsx';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
+import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
 const OngoingCampaignsCard = ({ data }) => {
   const { user } = useAuthContext();
   const [showPopup, setShowPopup] = useState(false);
+  const[loading, setLoading] = useState(false);
 
   const handleEdit = async () => {
     setShowPopup(true);
   };
 
   const ondelete = async () => {
+    setLoading(true)
     try {
       const response = await axios.delete(
         `http://localhost:5000/campaigns/${data.id}`,
@@ -24,13 +27,16 @@ const OngoingCampaignsCard = ({ data }) => {
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      setLoading(false)
       // Handle success case here
     } catch (error) {
       console.error('There was an error!', error);
+      setLoading(false)
     }
   };
 
   const handleUpdate = async (updatedCampaign) => {
+    setLoading(true)
     try {
       const response = await axios.patch(
         `http://localhost:5000/campaigns/${data.id}`,
@@ -40,12 +46,15 @@ const OngoingCampaignsCard = ({ data }) => {
         // Update the state with the updated campaign
         setData(updatedCampaign);
       }
+      setLoading(false)
     } catch (error) {
       console.error(error);
+      setLoading(false)
     }
   };
 
   return (
+    <>{loading ? <SpinnerLoadingSmalle /> : (
     <div className="campaign-request-card p-0 rounded-4 d-flex flex-column my-3 no-gutters">
       <img
         src={`http://localhost:5000/uploads/${data.image}`}
@@ -103,6 +112,8 @@ const OngoingCampaignsCard = ({ data }) => {
         </div>
       )}
     </div>
+    )}
+    </>
   );
 };
 

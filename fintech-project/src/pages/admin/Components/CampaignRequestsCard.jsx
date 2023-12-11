@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../AdminDashboard.css';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
+import SpinnerSmalle from '../../../components/SpinnerLoadingSmalle'
+
 
 const CampaignRequestsCard = ({ data }) => {
+  const [loading, setLoading] = useState(false)
   const { user } = useAuthContext();
+
   const onApprove = async () => {
+    setLoading(true)
     try {
       const response = await axios.patch(
         `http://localhost:5000/campaigns/${data.id}`,
@@ -21,13 +26,17 @@ const CampaignRequestsCard = ({ data }) => {
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      setLoading(false)
       // Handle success case here
     } catch (error) {
       console.error('There was an error!', error);
+      setLoading(false)
+
     }
   };
 
   const onReject = async () => {
+    setLoading(true)
     try {
       const response = await axios.delete(
         `http://localhost:5000/campaigns/${data.id}`,
@@ -40,13 +49,18 @@ const CampaignRequestsCard = ({ data }) => {
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+      setLoading(false)
       // Handle success case here
     } catch (error) {
       console.error('There was an error!', error);
+      setLoading(false)
+
     }
   };
 
   return (
+    <>
+    {loading ? <SpinnerSmalle /> : (
     <div className="campaign-request-card p-0 rounded-4 d-flex flex-column my-3 no-gutters">
       <img
         src={`http://localhost:5000/uploads/${data.image}`}
@@ -80,6 +94,8 @@ const CampaignRequestsCard = ({ data }) => {
         </button>
       </div>
     </div>
+    )}
+    </>
   );
 };
 
