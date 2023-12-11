@@ -41,6 +41,9 @@ const Navbar = () => {
             id="navbarNavDropdown"
           >
             <ul className="navbar-nav">
+              {user && (
+                <i><NotificationIcon /></i>
+              )}
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to={'/'}>
                   Home
@@ -96,11 +99,12 @@ const Navbar = () => {
                     Log out
                   </Link>
                   <div className='d-flex gap-3' >
-                  <i><NotificationIcon /></i>
+                    {user && user.hasOwnProperty('userType') && (
                   <i className='nav-link text-info'>Balance: {user.balance}</i>
+                  )}
                   </div>
                 </li>
-              )}
+                  )}
             </ul>
           </div>
         </div>

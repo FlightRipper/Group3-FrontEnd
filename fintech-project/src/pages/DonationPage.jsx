@@ -10,9 +10,9 @@ import TimeSpan from './Time_Span.png'
 
 
 const DonationPage = () => {
+  const { user } = useAuthContext();
   const location = useLocation();
   const { data } = location.state;
-  const { user } = useAuthContext();
   const token = user.token; // Get the token from the user object
   const decodedToken = jwt_decode(token);
   const [amount, setAmount] = useState('');

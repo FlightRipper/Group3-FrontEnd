@@ -1013,4 +1013,27 @@ font-family: Asap !important;
   width: 3rem;
   height: 3rem;
  }
- 
+
+ /* CampaignsPage.css */
+
+/* Add this to your existing CSS file or create a new one */
+
+
+@media (min-width: 576px) {
+ .custom-cards-home-lol {
+   width: 50vw !important;
+ }
+}
+
+@media (min-width: 768px) {
+ .custom-cards-home-lol {
+   width: 50vw !important;
+ }
+}
+
+@media (min-width: 992px) {
+ .custom-cards-home-lol {
+   width: 50vw !important;
+ }
+}
+

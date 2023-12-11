@@ -5,6 +5,7 @@ import { useAuthContext } from '../../../hooks/useAuthContext';
 
 
 const CampaignRequestsCard = ({ data }) => {
+  const { user } = useAuthContext()
   const onApprove = async () => {
     try {
       const response = await axios.patch(

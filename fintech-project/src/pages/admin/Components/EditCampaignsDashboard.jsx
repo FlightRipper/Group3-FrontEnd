@@ -4,12 +4,14 @@ import { useAuthContext } from '../../../hooks/useAuthContext';
 
 const EditCampaignsDashboard = ({ onClose, data }) => {
   const { user } = useAuthContext();
+
   const [campaign, setCampaign] = useState({
     category: '',
     title: '',
     description: '',
     targetAmount: '',
   });
+
   console.log(campaign);
 
   const handleChange = (e) => {

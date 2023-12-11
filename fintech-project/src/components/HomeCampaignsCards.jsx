@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import "../pages/custom.scss"
 
 
 const HomeCampaignsCards = ({ data }) => {
   
   return (
     <>
-      <div className="card w-25">
+      <div className="card w-25 custom-cards-home-lol">
         <img
           src={`http://localhost:5000/uploads/${data.image}`}
           className="card-img-top h-100 w-100"

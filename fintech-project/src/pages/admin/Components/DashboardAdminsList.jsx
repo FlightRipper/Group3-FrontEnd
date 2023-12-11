@@ -7,10 +7,10 @@ import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
 import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
 
 const DashboardAdminsList = () => {
-  const { user } = useAuthContext();
   const [admin, setadmin] = useState();
   const [searchTerm, setSearchTerm]= useState("");
   const [loading , setLoading] = useState(false)
+  const { user } = useAuthContext();
 
   useEffect(() => {
     setLoading(true)
