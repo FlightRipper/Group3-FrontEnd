@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import SpinnerLoading from './components/SpinnerLoading.jsx';
 import CampaignsPage from './pages/CampaignsPage.jsx';
 import DonationPage from './pages/DonationPage';
+import Footer from './components/Footer.jsx';
 
 
 const Layout = () => {
@@ -19,6 +20,7 @@ const Layout = () => {
     <>
       <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
  };
@@ -51,10 +53,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/donation" element={<DonationPage />} />
-        </Route>
+        <Route path="/donation" element={user ? <DonationPage /> : <Navigate to={'/'} />} />
         <Route path="/howitworks" element={<HowItWorksPage />} />
         <Route path="/campaigns" element={<CampaignsPage />} />
+        </Route>
         <Route path="/admin" element={!user ? <AdminSignIn /> : <Navigate to={'/'} />} />
         <Route
           path="/admin/home"
@@ -73,17 +75,6 @@ function App() {
         <Route
           path="/SignIn"
           element={!user ? <SigninPage /> : <Navigate to={'/'} />}
-        />
-        <Route
-          path="/Donation"
-          element={
-            user &&
-            (user.userType === 'projectOwner' || user.userType === 'donor') ? (
-              <DonationPage />
-            ) : (
-              <Navigate to={'/'} />
-            )
-          }
         />
       </Routes>
     </BrowserRouter>

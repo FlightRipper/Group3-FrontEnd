@@ -7,6 +7,7 @@ import HowItWorksPage from './HowItWorksPage';
 import CampaignsPage from './CampaignsPage'
 import i105 from './105.png'
 import { useAuthContext } from '../hooks/useAuthContext';
+import { Link } from 'react-router-dom';
 
 
 const home = () => {
@@ -77,10 +78,22 @@ const home = () => {
       </div>
       <div className='d-flex m-2 justify-content-center align-items-center flex-column gap-5 m-5 vh-50'>
       <h2><strong> Ready To Start Your Joureny?</strong></h2>
-      <div className='d-flex gap-5 w-75'>
-        <button className='btn-primary w-50 rounded p-2 text-white'>Start your Campaign</button>
-        <button className='btn-primary w-50 rounded p-2 text-white'>Donte Now</button>
+          {!user && (
+            <div className='d-flex gap-5 w-75'>
+        <button className='btn-primary w-50 rounded p-2 text-white'><Link to={'/signin'} className='text-decoration-none text-white'>Start your Campaign</Link></button>
+        <button className='btn-primary w-50 rounded p-2 text-white'><Link to={'/signin'} className='text-decoration-none text-white'>Donte Now</Link></button>
         </div>
+        )}
+        {user && user.userType === "donor" && (
+            <div className='d-flex gap-5 w-100 justify-content-center'>
+        <button className='btn-primary w-50 rounded p-2 text-white'><Link to={'/CampaignsPage'} className='text-decoration-none text-white'>Donte Now</Link></button>
+        </div>
+        )}
+        {user && user.userType === "projectOwner" && (
+            <div className='d-flex gap-5 w-100 justify-content-center'>
+        <button className='btn-primary w-50 rounded p-2 text-white'><Link to={'/'} className='text-decoration-none text-white'>Start your Campaign</Link></button>
+        </div>
+        )}
       <h5>________________________________________________________________</h5>
       </div>
       <CampaignsPage />
