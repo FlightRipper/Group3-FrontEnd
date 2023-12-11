@@ -3,36 +3,61 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import UsersTableData from './UsersTableData.jsx';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useAuthContext } from '../../../hooks/useAuthContext';
-import SpinnerLoadingSmalle from '../../../components/SpinnerLoadingSmalle.jsx';
+import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
 
 const DashboardUsersList = () => {
-  const [users, setusers] = useState();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(false)
   const { user } = useAuthContext()
 
-  useEffect(() => {
-    setLoading(true)
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/users/', {
+const [users,setusers]=useState()
+const [searchTerm, setSearchTerm] = useState("");
+const [selectedUserType, setSelectedUserType] = useState("All");
+
+const handleFilter=(userType)=>{
+  setSelectedUserType(userType);
+ };
+
+
+
+useEffect(()=>{
+
+  const fetchUser=async()=>{
+    try{
+      const response = await axios.get(
+        "http://localhost:5000/users/",{
           headers: {
             Authorization: `Bearer ${user.token}`
-          },
-        });
-        const data = response.data;
-        setusers(data);
-        console.log(data);
-        setLoading(false)
-      } catch (error) {
-        console.log(error);
-        setusers(null);
-        setLoading(false)
-      }
-    };
-    fetchUser();
-  }, []);
+          }
+        }
+      );
+  const data = response.data;
+  setusers(data)
+  console.log(data)
+    }
+    catch(error){
+      console.log(error);
+      setusers(null)
+    }
+  }
+  fetchUser();
+  },[])
+
+
+  const handleDataChanges = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/users/');
+      const data = response.data;
+      setusers(data);
+    } catch (error) {
+      console.log(error);
+      setusers(null);
+    }
+  };
+
+  const handleDelete = async (deletedUserId) => {
+    // Update the user state after deletion
+    setusers((prevUser) => prevUser.filter((user) => user.id !== deletedUserId));
+  };
 
   return (
     <div className="w-100">
@@ -44,9 +69,15 @@ const DashboardUsersList = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">User Role: Donor</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">User Role: Owner</Dropdown.Item>
-              <Dropdown.Item href="#/action-4">View All</Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("donor")}>
+                User Role: Donor
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("projectOwner")}>
+                User Role: Owner
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => handleFilter("All")}>
+                View All
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <input
@@ -59,7 +90,6 @@ const DashboardUsersList = () => {
           />
         </div>
         <div className="body-content w-100 p-0">
-          {loading ? <SpinnerLoadingSmalle /> : (
           <table className="table table-dark mt-3">
             <thead>
               <tr>
@@ -72,21 +102,20 @@ const DashboardUsersList = () => {
               </tr>
             </thead>
 
-            {users &&
-              users
-                .filter(
-                  (item) =>
-                    searchTerm === '' ||
-                    (item.username &&
-                      item.username
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()))
-                )
-                .map((item, index) => (
-                  <UsersTableData key={index} data={item} index={index} />
-                ))}
+{users &&
+  users
+  .filter((item) => (selectedUserType === "All" || item.userType === selectedUserType) &&
+  ((searchTerm === "" && item.username) ||
+    (item.username &&
+      item.username.toLowerCase().includes(searchTerm.toLowerCase())))
+)
+    .map((item, index) => (
+      <UsersTableData key={index} data={item} index={index} onDelete={handleDelete}/>
+    ))}
+
+
+
           </table>
-          )}
         </div>
       </div>
     </div>
