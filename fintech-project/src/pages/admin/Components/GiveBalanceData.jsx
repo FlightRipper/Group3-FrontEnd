@@ -45,6 +45,7 @@ const GiveBalanceData = ({ data, index }) => {
         <td className="admin-id-dashboard">{index + 1}</td>
         <td className="admin-username-dashboard">{data.username}</td>
         <td className="admin-email-dashboard">{data.email}</td>
+        <td className="admin-balance-dashboard">{data.balance}</td>
         <td className="admin-action-dashboard">
           <form onSubmit={handleCharge} className="d-flex gap-3">
             <input

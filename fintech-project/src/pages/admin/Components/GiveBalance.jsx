@@ -67,7 +67,9 @@ const GiveBalance = () => {
                   <th scope="col">#</th>
                   <th scope="col">Username</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Current Balance</th>
                   <th scope="col">Charging amount</th>
+
                 </tr>
               </thead>
 

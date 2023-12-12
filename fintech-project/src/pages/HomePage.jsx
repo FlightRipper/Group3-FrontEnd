@@ -108,7 +108,7 @@ const home = () => {
         {user && user.userType === 'projectOwner' && (
           <div className="d-flex gap-5 w-100 justify-content-center">
             <button className="btn-primary w-50 rounded p-2 text-white">
-              <Link to={'/'} className="text-decoration-none text-white">
+              <Link to={'/StartCampaign'} className="text-decoration-none text-white">
                 Start your Campaign
               </Link>
             </button>

@@ -14,37 +14,44 @@ const DonationPage = () => {
   const { data } = location.state;
   const token = user.token; // Get the token from the user object
   const decodedToken = jwt_decode(token);
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(0);
   const [messages, setmessages] = useState('');
   const [loading, setLoading] = useState(false);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/donations/campaign/${data.id}/user/${decodedToken.id}`,
-        { amount },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
 
-      if (amount > user.balance) {
-        setmessages("You Don't Have Enough Balance");
-      } else if (response.status === 201) {
-        setmessages('Your Donation was sent successfully');
-      } else {
+    if (!isNaN(parseFloat(amount)) && isFinite(amount)) {
+      try {
+        const response = await axios.post(
+          `http://localhost:5000/donations/campaign/${data.id}/user/${decodedToken.id}`,
+          { amount },
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+          );
+
+        if (amount > user.balance) {
+          setmessages("You Don't Have Enough Balance");
+        } else if (response.status === 201) {
+          setmessages('Your Donation was sent successfully');
+        } else {
+          setmessages('An error occurred');
+        }
+  
+        console.log(response);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
         setmessages('An error occurred');
+        setLoading(false);
       }
-      console.log(response);
-      setLoading(false)
-    } catch (error) {
-      console.log(error);
-      setmessages('An error occurred');
-      setLoading(false)
+    } else {
+      setmessages('Please enter a valid donation amount.');
+      setLoading(false);
     }
   };
 

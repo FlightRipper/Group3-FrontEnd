@@ -19,6 +19,10 @@ import SpinnerLoading from './components/SpinnerLoading.jsx';
 import CampaignsPage from './pages/CampaignsPage.jsx';
 import DonationPage from './pages/DonationPage';
 import Footer from './components/Footer.jsx';
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import '@mantine/core/styles.css';
+import StartCampaignPage from './pages/StartCampaignPage.jsx';
 
 const Layout = () => {
   return (
@@ -64,6 +68,11 @@ function App() {
           />
           <Route path="/howitworks" element={<HowItWorksPage />} />
           <Route path="/campaigns" element={<CampaignsPage />} />
+          <Route path='/StartCampaign' element={<MantineProvider>
+            <Notifications />
+            <StartCampaignPage />
+            </MantineProvider>
+          } />
         </Route>
         <Route
           path="/admin"

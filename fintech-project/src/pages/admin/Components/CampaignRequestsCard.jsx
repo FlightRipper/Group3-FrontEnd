@@ -3,20 +3,19 @@ import '../AdminDashboard.css';
 import axios from 'axios';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import SpinnerSmalle from '../../../components/SpinnerLoadingSmalle'
+import jwt_decode from 'jwt-decode';
+
 
 
 const CampaignRequestsCard = ({ data }) => {
   const [loading, setLoading] = useState(false)
   const { user } = useAuthContext();
-
+  const decodedToken = jwt_decode(user.token);
   const onApprove = async () => {
     setLoading(true)
     try {
       const response = await axios.patch(
-        `http://localhost:5000/campaigns/${data.id}`,
-        {
-          isApproved: true,
-        },
+        `http://localhost:5000/admins/approve/admin/${decodedToken.id}/campaign/${data.id}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
