@@ -40,6 +40,20 @@ const Navbar = () => {
             className="collapse navbar-collapse justify-content-end"
             id="navbarNavDropdown"
           >
+            {user && user.userType === 'projectOwner' && (
+               <button className="btn-primary  rounded p-2 mr-5 mt-2 text-white">
+              <Link to={'/StartCampaign'} className="text-decoration-none text-white">
+                Start your Campaign
+              </Link>
+            </button>
+            )}
+                {user && user.userType === 'donor' && (
+               <button className="btn-primary  rounded p-2 mr-5 mt-2 text-white">
+              <Link to={'/campaigns'} className="text-decoration-none text-white">
+                Donate Now
+              </Link>
+            </button>
+            )}
             <ul className="navbar-nav">
               {user && (
                 <i><NotificationIcon /></i>
